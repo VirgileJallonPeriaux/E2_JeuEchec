@@ -1,0 +1,41 @@
+@name Essai Tracker
+@inputs EgpHud:wirelink 
+@outputs Players:array
+@persist 
+@trigger 
+
+if(first())
+{
+        entity():createWire(entity():isWeldedTo(),"EgpHud","wirelink")
+        entity():isWeldedTo():setAlpha(0) entity():isWeldedTo():propNotSolid(1)
+    entity():setAlpha(0) entity():propNotSolid(1)
+    timer("MAJ",100)
+}
+
+if(clk("MAJ")) 
+{
+    Players=players()
+    I=2
+    foreach(K,V:entity=Players) 
+    {
+        Name=V:name()
+        
+        EgpHud:egp3DTracker(I,V:boxCenter())
+        EgpHud:egpParent(I,V)
+        EgpHud:egpBoxOutline(I+1,vec2(0,0),vec2(10,10))
+        EgpHud:egpColor(I+1,vec4(255,0,0,255))
+        EgpHud:egpParent(I+1,I)
+        
+        EgpHud:egpBox(I+2,vec2(9+(Name:length()*5),3),vec2((Name:length()*10),20))
+        EgpHud:egpColor(I+2,vec4(100,100,100,150))
+        EgpHud:egpParent(I+2,I)
+        
+        EgpHud:egpText(I+3,Name,vec2(9,-7))
+        EgpHud:egpColor(I+3,vec(255,255,255))
+        EgpHud:egpParent(I+3,I)
+        
+        I+=6
+    }
+    
+timer("MAJ",30000)
+}

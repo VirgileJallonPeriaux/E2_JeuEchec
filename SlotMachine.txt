@@ -1,0 +1,398 @@
+@name ESSAI Slot Machine
+@inputs [Screen Screen2]:entity EGP:wirelink
+@outputs Puce:entity
+@persist [Lse]:array [LastSpeaker Seat]:entity
+@persist Number1 Number2 Number3 Plops VarT VarT2
+interval(100)
+if(first())
+{
+    runOnChat(1)
+    runOnFile(1)
+    Puce=entity()
+    Puce:setAlpha(0)
+        
+    Year=time("year")                   
+    Month=time("month")
+    Day=time("day")                     
+    Hour=(time("hour")+2)               
+    Min=time("min")                     
+    Sec=time("sec")                    
+    
+    findIncludeModel("models/nova/jeep_seat.mdl")
+    findInSphere(entity():pos(),50)
+    Seat=find()
+    Seat:propFreeze(1)
+    Seat:setPos(Puce:pos()+Puce:toWorldAxis(vec(0,0,30)))
+    Seat:setAng(Puce:angles())
+    Seat:setMaterial("models/debug/debugwhite")
+    Seat:setColor(vec(88,41,0))
+    noCollideAll(Seat,1)
+
+    Screen=wireSpawnEgp("models/hunter/plates/plate1x1.mdl",Puce:pos()+Puce:toWorldAxis(vec(50,10,50)),Puce:angles()+Puce:toWorld(ang(90,225,0)))
+    Puce:createWire(Screen,"EGP","wirelink")       
+    Screen:propFreeze(1)
+    
+    EGP:egpBox(28,vec2(256),vec2(512))  EGP:egpColor(28,vec(165,165,165))
+    EGP:egpText(1,"Regles et conditions d'utilisation de la machine a sous :",vec2(10,10))  EGP:egpColor(1,vec(255,0,0))
+    EGP:egpText(2,"-Pour jouer, asseyez vous dans le siege puis tapez /slot suivi de",vec2(10,35))
+    EGP:egpText(3,"la somme que vous voulez mettre en jeu, par exemple :",vec2(10,50))
+    EGP:egpText(4,"tapez                  pour mettre en jeu",vec2(10,65))
+    EGP:egpText(5,"-Une fois la commande tapee et la demande de transaction validee,",vec2(10,90))
+    EGP:egpText(6,"toutes les transactions seront gerees pas la machine. Aussi",vec2(10,105))
+    EGP:egpText(7,"une trace de toutes les transactions est conservee et ne pourra",vec2(10,120))
+    EGP:egpText(8,"etre contestee et ce pour eviter toute tentative de tricherie.",vec2(10,135))
+    EGP:egpText(9,"-Suite a une victoire vous recevrez automatiquement votre du",vec2(10,160))
+    EGP:egpText(10,"et ce en fonction du tableau des gains visible pres de la machine.",vec2(10,175))
+    EGP:egpText(11,"-Suite a une defaite, toute demande de remboursement se",vec2(10,200))
+    EGP:egpText(12,"verra refusee si la raison n'est pas justifiee et jugee credible.",vec2(10,215))
+    EGP:egpText(13,"-Toutefois, suite a un eventuel probleme de la machine, merci de",vec2(10,240))
+    EGP:egpText(14,"prevenir                       qui se verra vous rendre vos argent mis en jeu avant",vec2(10,255))
+    EGP:egpText(15,"que le dysfonctionnement ne survienne.",vec2(10,270))
+    EGP:egpText(16,"-Nous rappelons que les resultats obtenus sur cette machine sont",vec2(10,295))
+    EGP:egpText(17," purement aleatoires et n'ont en aucun cas la fonction de favoriser",vec2(10,310))
+    EGP:egpText(18,"la victoire ou la defaite de tel ou tel joueur.",vec2(10,325))
+    EGP:egpText(19,"-Pour eviter toute dette ou situation embarassante, si la machine",vec2(10,350))
+    EGP:egpText(20,"n'a pas assez de monnaie pour donner au joueur l'equivalent d'un",vec2(10,365))
+    EGP:egpText(21,"Jackpot, la transaction apres avoir tape la commande ne sera pas",vec2(10,380))
+    EGP:egpText(22,"proposee et le joueur se verra recevoir un message pour confirmer",vec2(10,395))
+    EGP:egpText(23,"les faits evoques ci-dessus.",vec2(10,410))
+    EGP:egpText(24,"Ces conditions d'utilisation ont ete ecrites dans le but d'eviter",vec2(10,435))
+    EGP:egpText(25,"tout probleme, mais rassurez-vous, aucun dysfonctionnement ne",vec2(10,450))
+    EGP:egpText(26,"viendra gacher vos parties.",vec2(10,465))
+    EGP:egpText(27,"Amusez vous bien !",vec2(10,490)) EGP:egpColor(27,vec(255,0,0))    
+    EGP:egpText(29,"/slot 25",vec2(55,65))            EGP:egpColor(29,vec(255,0,0))    
+    EGP:egpText(30,"25 plops.",vec2(265,65))          EGP:egpColor(30,vec(255,0,0))              
+    EGP:egpText(31,"DemoniacV",vec2(80,255))          EGP:egpColor(31,vec(255,0,0))
+
+
+    Screen2=wireSpawnEgp("models/hunter/plates/plate1x1.mdl",Puce:pos()+Puce:toWorldAxis(vec(-50,20,50)),Puce:angles()+Puce:toWorld(ang(90,-45,0)))
+    Puce:createWire(Screen2,"EGP","wirelink")       
+    Screen2:propFreeze(1)
+    
+    EGP:egpBox(32,vec2(256),vec2(512))  EGP:egpColor(32,vec(165,165,165))
+    EGP:egpText(33,"Gains disponibles sur machine a sous :",vec2(10,10))  EGP:egpColor(33,vec(255,0,0))
+    EGP:egpText(34,"-Suite a une victoire, la somme gagnee est proportionnelle a",vec2(10,35))
+    EGP:egpText(35,"celle mise en jeu avec la commande /slot.",vec2(10,50))
+    EGP:egpText(36,"-Pour l'emporter il suffit d'obtenir 3 chiffres identiques,",vec2(10,75))
+    EGP:egpText(37,"ils sont numerotes de 0 a 7.",vec2(10,90))
+    EGP:egpText(38,"-Pour toute victoire avec une suite de 0,1,2,3,4,5 ou de 6,",vec2(10,115))
+    EGP:egpText(39,"le gain sera egal a            la somme mise en jeu.",vec2(10,130))
+    EGP:egpText(40,"2 fois",vec2(150,130))  EGP:egpColor(40,vec(255,0,0))
+    EGP:egpText(41,"-En revanche pour une victoire avec une suite de 7, vous",vec2(10,155))
+    EGP:egpText(42,"gagnerez            la somme mise en jeu !",vec2(10,170))
+    EGP:egpText(43,"5 fois",vec2(82.5,170))   EGP:egpColor(43,vec(255,0,0))
+    EGP:egpText(44,"-Evidemment pour une modeste somme de 5 plops, le gain est",vec2(10,195))
+    EGP:egpText(45,"peu eleve car il est soit de 10 soit de 25 Plops, mais avec une",vec2(10,210))
+    EGP:egpText(46,"mise un peu plus elevee de 20 plops, c'est deja 40/120 Plops !",vec2(10,225))
+    EGP:egpText(47,"-Il suffit d'une fois, alors venez tenter votre chance ici,",vec2(10,250))
+    EGP:egpText(48,"et ce des maintenant !",vec2(10,265))
+    EGP:egpText(49,"-Rappelons encore une fois que la machine est autonome et",vec2(10,290))
+    EGP:egpText(50,"que vous pouvez jouer sans avoir a demander la presence",vec2(10,305))
+    EGP:egpText(51,"d'un joueur.",vec2(10,320))
+    EGP:egpText(52,"-Sur ce il ne me reste qu'a vous souhaiter un bon",vec2(10,345))
+    EGP:egpText(53,"divertissement et surtout, bonne chance :)",vec2(10,360))
+  
+    holoCreate(1)
+    holoPos(1,Puce:pos()+Puce:toWorldAxis(vec(0,45,19.45)))
+    holoScale(1,vec(2.5,2.5,3.25))
+    holoColor(1,vec(180))
+    
+    holoCreate(2)
+    holoModel(2,"models/sprops/triangles/right/size_0_5/rtri_6x18.mdl")
+    holoPos(2,Puce:pos()+Puce:toWorldAxis(vec(-13.55,45,46.5)))
+    holoAng(2,Puce:angles()+Puce:toWorld(ang(0,270,0)))
+    holoScale(2,vec(1.65,1,2.5))
+    holoColor(2,vec(1180))
+    
+    holoCreate(3)
+    holoModel(3,"models/sprops/triangles/right/size_0_5/rtri_6x18.mdl")
+    holoPos(3,Puce:pos()+Puce:toWorldAxis(vec(13.55,45,46.5)))
+    holoAng(3,Puce:angles()+Puce:toWorld(ang(0,270,0)))
+    holoScale(3,vec(1.65,1,2.5))
+    holoColor(3,vec(180))
+    
+    holoCreate(4)
+    holoModel(4,"models/sprops/rectangles/size_3_5/rect_30x42x3.mdl")
+    holoPos(4,Puce:pos()+Puce:toWorldAxis(vec(0,45.1,45.85)))
+    holoAng(4,Puce:angles()+Puce:toWorld(ang(27.10,-90,0)))
+    holoScale(4,vec(0.775,1,0.5))
+    holoColor(4,vec(180))
+    
+    holoCreate(5)
+    holoModel(5,"models/sprops/rectangles/size_2_5/rect_18x30x3.mdl")
+    holoPos(5,Puce:pos()+Puce:toWorldAxis(vec(0,58.5,54.90)))
+    holoAng(5,Puce:angles()+Puce:toWorld(ang(0,0,90)))
+    holoScale(5,vec(1,1.75,1))
+    holoColor(5,vec(180))
+    
+    holoCreate(6)
+    holoModel(6,"models/sprops/geometry/hhex_24.mdl")
+    holoPos(6,Puce:pos()+Puce:toWorldAxis(vec(20,58.5,85)))
+    holoAng(6,Puce:angles()+Puce:toWorld(ang(90,0,0)))
+    holoScale(6,vec(0.8,1,1))
+    holoColor(6,vec(255,190,0))
+    
+    holoCreate(7)
+    holoModel(7,"models/sprops/geometry/hhex_24.mdl")
+    holoPos(7,Puce:pos()+Puce:toWorldAxis(vec(-20,58.5,85)))
+    holoAng(7,Puce:angles()+Puce:toWorld(ang(-90,0,0)))
+    holoScale(7,vec(0.8,1,1))
+    holoColor(7,vec(255,190,0))
+    
+    holoCreate(8)
+    holoModel(8,"models/sprops/rectangles/size_2_5/rect_18x30x3.mdl")
+    holoPos(8,Puce:pos()+Puce:toWorldAxis(vec(0,58.5,85)))
+    holoAng(8,Puce:angles()+Puce:toWorld(ang(0,0,90)))
+    holoScale(8,vec(1,0.8,1))
+    holoColor(8,vec(255,190,0))
+        
+    holoCreate(9)
+    holoModel(9,"models/sprops/cylinders/size_2/cylinder_3x6.mdl")
+    holoPos(9,Puce:pos()+Puce:toWorldAxis(vec(0,58.5,73)))
+    holoAng(9,Puce:angles()+Puce:toWorld(ang(0,0,0)))
+    holoScale(9,vec(0.95,0.95,2))
+    holoColor(9,vec(157,0,164))
+    
+    holoCreate(10)
+    holoModel(10,"models/sprops/geometry/sphere_6.mdl")
+    holoPos(10,Puce:pos()+Puce:toWorldAxis(vec(15.75,49.5,42.5)))
+    holoScale(10,vec(1,1,1))
+    
+    holoCreate(11)
+    holoModel(11,"models/sprops/misc/fittings/corner_45_6.mdl")
+    holoPos(11,Puce:pos()+Puce:toWorldAxis(vec(16.5,44.5,42.5)))
+    holoAng(11,Puce:angles()+Puce:toWorld(ang(-155,90,0)))
+    holoScale(11,vec(0.5,0.25,0.25))
+    
+    holoCreate(12)
+    holoModel(12,"models/sprops/cylinders/size_2/cylinder_3x18.mdl")
+    holoPos(12,Puce:pos()+Puce:toWorldAxis(vec(16.5,36.85+0.5,49.475)))
+    holoAng(12,Puce:angles()+Puce:toWorld(ang(-45,90,0)))
+    holoScale(12,vec(0.55,0.55,0.90))
+    
+    holoCreate(13)
+    holoModel(13,"models/sprops/geometry/sphere_3.mdl")
+    holoPos(13,Puce:pos()+Puce:toWorldAxis(vec(16.5,31,56)))
+    holoColor(13,vec(255,0,0))
+    
+    holoCreate(14)
+    holoModel(14,"models/sprops/misc/alphanum/alphanum_l_k.mdl")
+    holoPos(14,Puce:pos()+Puce:toWorldAxis(vec(0,57.5,85)))
+    holoAng(14,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(14,vec(0.75))
+    
+    holoCreate(15)
+    holoModel(15,"models/sprops/misc/alphanum/alphanum_l_p.mdl")
+    holoPos(15,Puce:pos()+Puce:toWorldAxis(vec(6,57.5,85)))
+    holoAng(15,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(15,vec(0.75))
+    
+    holoCreate(16)
+    holoModel(16,"models/sprops/misc/alphanum/alphanum_l_o.mdl")
+    holoPos(16,Puce:pos()+Puce:toWorldAxis(vec(12,57.5,85)))
+    holoAng(16,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(16,vec(0.75))
+    
+    holoCreate(17)
+    holoModel(17,"models/sprops/misc/alphanum/alphanum_l_c.mdl")
+    holoPos(17,Puce:pos()+Puce:toWorldAxis(vec(-6,57.5,85)))
+    holoAng(17,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(17,vec(0.75))
+    
+    holoCreate(18)
+    holoModel(18,"models/sprops/misc/alphanum/alphanum_l_a.mdl")
+    holoPos(18,Puce:pos()+Puce:toWorldAxis(vec(-12,57.5,85)))
+    holoAng(18,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(18,vec(0.75))
+    
+    holoCreate(19)
+    holoModel(19,"models/sprops/cylinders/size_4/cylinder_9x18.mdl")
+    holoPos(19,Puce:pos()+Puce:toWorldAxis(vec(0,0,15)))
+    holoScale(19,vec(0.5,0.5,2))
+    
+    holoCreate(20)
+    holoModel(20,"models/sprops/geometry/hring_30.mdl")
+    holoPos(20,Puce:pos()+Puce:toWorldAxis(vec(0,0,10)))
+    holoAng(20,Puce:angles()+Puce:toWorld(ang(0,0,0)))
+    
+    holoCreate(21)
+    holoModel(21,"models/sprops/geometry/hring_30.mdl")
+    holoPos(21,Puce:pos()+Puce:toWorldAxis(vec(0,0,10)))
+    holoAng(21,Puce:angles()+Puce:toWorld(ang(0,90,0)))
+    
+    holoCreate(22)
+    holoPos(22,Puce:pos()+Puce:toWorldAxis(vec(-8.5,45.1,47)))
+    holoAng(22,Puce:angles()+Puce:toWorld(ang(0,-180,62.5)))
+    holoScale(22,vec(0.75))
+    
+    holoCreate(23)
+    holoPos(23,Puce:pos()+Puce:toWorldAxis(vec(0,45.1,47)))
+    holoAng(23,Puce:angles()+Puce:toWorld(ang(0,-180,62.5)))
+    holoScale(23,vec(0.75))
+    
+    holoCreate(24)
+    holoPos(24,Puce:pos()+Puce:toWorldAxis(vec(8.5,45.1,47)))
+    holoAng(24,Puce:angles()+Puce:toWorld(ang(0,-180,62.5)))
+    holoScale(24,vec(0.75))
+    
+    holoCreate(25)
+    holoModel(25,"models/sprops/misc/alphanum/alphanum_j.mdl")
+    holoPos(25,Puce:pos()+Puce:toWorldAxis(vec(-18,57.5,85)))
+    holoAng(25,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoColor(25,vec(255,20,20))
+    holoScale(25,vec(0.75))
+    
+    holoCreate(26)
+    holoModel(26,"models/sprops/misc/alphanum/alphanum_l_t.mdl")
+    holoPos(26,Puce:pos()+Puce:toWorldAxis(vec(18,57.5,85)))
+    holoAng(26,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoColor(26,vec(255,20,20))
+    holoScale(26,vec(0.75))
+    
+    holoCreate(27)
+    holoModel(27,"models/sprops/misc/alphanum/alphanum_l_g.mdl")
+    holoPos(27,Puce:pos()+Puce:toWorldAxis(vec(0,57.5,62.5)))
+    holoAng(27,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(27,vec(0.5))
+    
+    holoCreate(28)
+    holoModel(28,"models/sprops/misc/alphanum/alphanum_l_a.mdl")
+    holoPos(28,Puce:pos()+Puce:toWorldAxis(vec(-6,57.5,62.5)))
+    holoAng(28,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(28,vec(0.5))
+    
+    holoCreate(29)
+    holoModel(29,"models/sprops/misc/alphanum/alphanum_g.mdl")
+    holoPos(29,Puce:pos()+Puce:toWorldAxis(vec(-12,57.5,62.5)))
+    holoAng(29,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(29,vec(0.5))
+    
+    holoCreate(30)
+    holoModel(30,"models/sprops/misc/alphanum/alphanum_l_n.mdl")
+    holoPos(30,Puce:pos()+Puce:toWorldAxis(vec(6,57.5,62.5)))
+    holoAng(30,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(30,vec(0.5))
+    
+    holoCreate(31)
+    holoModel(31,"models/sprops/misc/alphanum/alphanum_l_e.mdl")
+    holoPos(31,Puce:pos()+Puce:toWorldAxis(vec(12,57.5,62.5)))
+    holoAng(31,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(31,vec(0.5))
+    
+    holoCreate(32)
+    holoModel(32,"models/sprops/misc/alphanum/alphanum_l_r.mdl")
+    holoPos(32,Puce:pos()+Puce:toWorldAxis(vec(0,57.5,62.5)))
+    holoAng(32,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(32,vec(0.5))
+    
+    holoCreate(33)
+    holoModel(33,"models/sprops/misc/alphanum/alphanum_l_e.mdl")
+    holoPos(33,Puce:pos()+Puce:toWorldAxis(vec(-6,57.5,62.5)))
+    holoAng(33,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(33,vec(0.5))
+    
+    holoCreate(34)
+    holoModel(34,"models/sprops/misc/alphanum/alphanum_p.mdl")
+    holoPos(34,Puce:pos()+Puce:toWorldAxis(vec(-12,57.5,62.5)))
+    holoAng(34,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(34,vec(0.5))
+    
+    holoCreate(35)
+    holoModel(35,"models/sprops/misc/alphanum/alphanum_l_d.mdl")
+    holoPos(35,Puce:pos()+Puce:toWorldAxis(vec(6,57.5,62.5)))
+    holoAng(35,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(35,vec(0.5))
+    
+    holoCreate(36)
+    holoModel(36,"models/sprops/misc/alphanum/alphanum_l_u.mdl")
+    holoPos(36,Puce:pos()+Puce:toWorldAxis(vec(12,57.5,62.5)))
+    holoAng(36,Puce:angles()+Puce:toWorld(ang(0,180,0)))
+    holoScale(36,vec(0.5))
+        
+    for(K=1,36) {holoMaterial(K,"models/debug/debugwhite")}
+    for(K=14,18) {holoColor(K,vec(255,20,20))}
+    for(K=10,12) {holoColor(K,vec(165))}
+    for(K=22,24) {holoColor(K,vec(255,20,20)) holoAlpha(K,0)}
+    for(K=27,36) {holoAlpha(K,0)}
+    for(K=27,31) {holoColor(K,vec(0,255,0))}
+    for(K=32,36) {holoColor(K,vec(255,0,0))}
+    
+    noCollideAll(Screen,1)     noCollideAll(Screen2,1)
+}
+
+if(chatClk())
+{
+    Lse=lastSaid():explode(" ")
+    LastSpeaker=lastSpoke()
+    Plops=Lse:string(2):toNumber()
+    
+    if(LastSpeaker==Seat:driver())
+    {
+        if(Seat:driver():name()!="Darkeops")
+        {
+            if(Lse:string(1)=="/slot")
+            {
+                if((Plops*5)+10000<owner():points())
+                {
+                    Seat:driver():pointsRequest(Plops)
+                }
+                else
+                {
+                    print("La somme de"+Plops:toString()+" Plops mise en jeu par "+Seat:driver():name()+" est trop importante")    
+                }
+            }
+        }
+    }
+}
+        
+if(pointsClk())
+{
+    Number1=randint(0,7) Number2=randint(0,7) Number3=randint(0,7)
+    fileAppend("slotmachineconsole.txt","Le Joueur"+" "+Seat:driver():name()+" a paye "+Plops+" plops"+" le"+" "+Day:toString()+" / "+Month:toString()+" / "+Year:toString()+" a "+Hour:toString()+" heures "+Min:toString()+" minutes et "+Sec:toString()+" secondes et a obtenu le tirage suivant : "+Number1:toString()+Number2:toString()+Number3:toString()+"\n")
+    
+    holoModel(22,"models/sprops/misc/alphanum/alphanum_"+Number1:toString()+".mdl")
+    holoModel(23,"models/sprops/misc/alphanum/alphanum_"+Number2:toString()+".mdl")
+    holoModel(24,"models/sprops/misc/alphanum/alphanum_"+Number3:toString()+".mdl")
+    
+    VarT=1 timer("T1",500)   timer("T2",1500)  timer("T3",2500)    timer("TAlpha",5000)
+    
+    if(Number1==Number2)
+    {
+        if(Number2==Number3)
+        {
+            timer("Win",2500)
+            
+            if(Number1==7)
+            {
+                Seat:driver():pointsGive(Plops*5)
+            }
+        
+            if(Number1==0|Number1==1|Number1==2|Number1==3|Number1==4|Number1==5|Number1==6) 
+            {
+                Seat:driver():pointsGive(Plops*2)
+            }
+        }
+    }
+    else
+    {
+        timer("Lose",2500)
+    }
+    
+    hint("Suite au jeu vous avez "+owner():points():toString()+" Plops restants",10)
+}
+
+if(pointsNoClk())
+{
+    fileAppend("slotmachineconsole.txt","Le Joueur"+" "+Seat:driver():name()+" s'est desiste au moment de payer "+Plops+" plops"+" le"+" "+Day:toString()+" / "+Month:toString()+" / "+Year:toString()+" a "+Hour:toString()+" heures "+Min:toString()+" minutes et "+Sec:toString()+" secondes\n")
+}
+
+if(VarT==1)
+{
+    if(clk("T1")) {holoAlpha(22,255)}   
+    if(clk("T2")) {holoAlpha(23,255)}
+    if(clk("T3")) {holoAlpha(24,255)}
+    if(clk("TAlpha")) {holoAlpha(22,0)  holoAlpha(23,0)   holoAlpha(24,0) for(K=27,36) {holoAlpha(K,0)}} 
+    if(clk("Win")) {for(K=27,31) {holoAlpha(K,255)}}
+    if(clk("Lose")) {for(K=32,36) {holoAlpha(K,255)}}
+}
+

@@ -1,0 +1,232 @@
+@name Essai R2D2
+@persist 
+interval(100)
+if(first())
+{
+    holoCreate(0)
+    holoPos(0,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,35)))
+    holoAng(0,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    holoAlpha(0,0)
+    
+    holoCreate(1)
+    holoModel(1,"models/sprops/misc/tubes/size_2/tube_24x30.mdl")
+    holoPos(1,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,0)))
+    holoAng(1,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,180,90)))
+    
+    holoCreate(2)
+    holoModel(2,"models/sprops/misc/fittings/cred_12_9_short.mdl")
+    holoPos(2,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,-16.5)))
+    holoAng(2,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,180)))
+    holoScale(2,vec(2.01,2.01,0.5))
+    
+    holoCreate(3)
+    holoModel(3,"models/sprops/geometry/sphere_24.mdl")
+    holoPos(3,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,15)))
+    holoAng(3,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    
+    holoCreate(4)
+    holoModel(4,"models/sprops/cylinders/size_3/cylinder_6x30.mdl")
+    holoPos(4,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,15)))
+    holoAng(4,holoEntity(0):angles()+holoEntity(0):toWorld(ang(90,0,90)))
+    
+    holoCreate(5)
+    holoModel(5,"models/sprops/geometry/hdisc_12.mdl")
+    holoPos(5,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,16.5)))
+    holoAng(5,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    
+    holoCreate(6)
+    holoModel(6,"models/sprops/geometry/hdisc_12.mdl")
+    holoPos(6,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,16.5)))
+    holoAng(6,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    
+    holoCreate(7)
+    holoModel(7,"models/sprops/rectangles/size_1_5/rect_6x12x3.mdl")
+    holoPos(7,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,11)))
+    holoAng(7,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,90)))
+    holoScale(7,vec(1,0.9,1))
+    
+    holoCreate(8)
+    holoModel(8,"models/sprops/rectangles/size_1_5/rect_6x12x3.mdl")
+    holoPos(8,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,11)))
+    holoAng(8,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,90)))
+    holoScale(8,vec(1,0.9,1))
+    
+    holoCreate(9)
+    holoModel(9,"models/sprops/geometry/hhex_12.mdl")
+    holoPos(9,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,7)))
+    holoAng(9,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,180)))
+    holoScale(9,vec(1,1,0.5))
+    
+    holoCreate(10)
+    holoModel(10,"models/sprops/geometry/hhex_12.mdl")
+    holoPos(10,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,7)))
+    holoAng(10,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,180)))
+    holoScale(10,vec(1,1,0.5))
+    
+    holoCreate(11)
+    holoModel(11,"models/sprops/rectangles/size_1_5/rect_6x30x3.mdl")
+    holoPos(11,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,-9.1)))
+    holoAng(11,holoEntity(0):angles()+holoEntity(0):toWorld(ang(90,90,0)))
+    
+    holoCreate(12)
+    holoModel(12,"models/sprops/rectangles/size_1_5/rect_6x30x3.mdl")
+    holoPos(12,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,-9.1)))
+    holoAng(12,holoEntity(0):angles()+holoEntity(0):toWorld(ang(90,90,0)))
+    
+    holoCreate(13)
+    holoModel(13,"models/sprops/geometry/hhex_24.mdl")
+    holoPos(13,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,-30)))
+    holoAng(13,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    holoScale(13,vec(1.15,2.5,1.15))
+    
+    holoCreate(14)
+    holoModel(14,"models/sprops/geometry/hhex_24.mdl")
+    holoPos(14,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,-30)))
+    holoAng(14,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    holoScale(14,vec(1.15,2.5,1.15))
+    
+    holoCreate(15)
+    holoModel(15,"models/sprops/geometry/hdisc_12.mdl")
+    holoPos(15,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14,-22)))
+    holoAng(15,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    holoScale(15,vec(1,1.5,1))
+    
+    holoCreate(16)
+    holoModel(16,"models/sprops/geometry/hdisc_12.mdl")
+    holoPos(16,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14,-22)))
+    holoAng(16,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    holoScale(16,vec(1,1.5,1))
+    
+    holoCreate(17)
+    holoModel(17,"models/sprops/cylinders/size_2/cylinder_3x12.mdl")
+    holoPos(17,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,-19.5)))
+    holoAng(17,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    
+    holoCreate(18)
+    holoModel(18,"models/sprops/geometry/hdisc_12.mdl")
+    holoPos(18,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,-27.5)))
+    holoAng(18,holoEntity(0):angles()+holoEntity(0):toWorld(ang(10,0,0)))
+    holoScale(18,vec(1,1.5,1))
+    
+    holoCreate(19)
+    holoModel(19,"models/sprops/geometry/hhex_24.mdl")
+    holoPos(19,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(-1,0,-35)))
+    holoAng(19,holoEntity(0):angles()+holoEntity(0):toWorld(ang(20,0,0)))
+    holoScale(19,vec(1.15,2.5,1.15))
+    
+    #####Corps secondaire pour les Alphas d'animation#####
+    holoCreate(20)
+    holoModel(20,"models/sprops/misc/tubes/size_2/tube_24x30.mdl")
+    holoPos(20,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,0)))
+    holoAng(20,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,180,90)))
+    
+    holoCreate(21)
+    holoModel(21,"models/sprops/misc/fittings/cred_12_9_short.mdl")
+    holoPos(21,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,-16.5)))
+    holoAng(21,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,180)))
+    holoScale(21,vec(2.01,2.01,0.5))
+    
+    holoCreate(22)
+    holoModel(22,"models/sprops/geometry/sphere_24.mdl")
+    holoPos(22,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,0,15)))
+    holoAng(22,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,0,0)))
+    #####                                               #####
+    
+    holoCreate(23)
+    holoModel(23,"models/sprops/rectangles/size_1/rect_3x30x3.mdl")
+    holoPos(23,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,14.5,-2.5)))
+    holoAng(23,holoEntity(0):angles()+holoEntity(0):toWorld(ang(90,0,0)))
+    
+    holoCreate(24)
+    holoModel(24,"models/sprops/rectangles/size_1/rect_3x30x3.mdl")
+    holoPos(24,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(0,-14.5,-2.5)))
+    holoAng(24,holoEntity(0):angles()+holoEntity(0):toWorld(ang(90,0,0)))
+    
+    holoCreate(25)
+    holoModel(25,"models/sprops/misc/sq_holes/sqhole_d0_12.mdl")
+    holoPos(25,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(14,0,-4)))
+    holoAng(25,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,90,-20)))
+    holoScale(25,vec(0.3))
+    holoEntity(25):parentTo(holoEntity(1))
+    
+    holoCreate(26)
+    holoModel(26,"models/sprops/misc/sq_holes/sqhole_d0_12.mdl")
+    holoPos(26,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(12.75,0,-0.55)))
+    holoAng(26,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,90,-20)))
+    holoScale(26,vec(0.3))
+    holoEntity(26):parentTo(holoEntity(1))
+    
+    holoCreate(27)
+    holoModel(27,"models/sprops/misc/sq_holes/sqhole_d0_12.mdl")
+    holoPos(27,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(11.75,0,-8.1)))
+    holoAng(27,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,90,0)))
+    holoScale(27,vec(0.3))
+    
+    holoCreate(28)
+    holoModel(28,"models/sprops/misc/sq_holes/sqhole_d0_12.mdl")
+    holoPos(28,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(11.75,0,-4.5)))
+    holoAng(28,holoEntity(0):angles()+holoEntity(0):toWorld(ang(0,90,0)))
+    holoScale(28,vec(0.3))
+    
+    for(K=1,28) {holoEntity(K):parentTo(holoEntity(0)) holoMaterial(K,"models/debug/debugwhite") holoDisableShading(K,0.75) holoColor(K,vec(255))}
+    
+    holoEntity(2):parentTo(holoEntity(1))
+    holoEntity(3):parentTo(holoEntity(1))
+    holoEntity(17):parentTo(holoEntity(1))
+    holoEntity(18):parentTo(holoEntity(1))
+    holoEntity(19):parentTo(holoEntity(1))
+    
+    holoAng(1,holoEntity(0):angles()+holoEntity(0):toWorld(ang(20,180,90)))
+    for(K=20,22) {holoAlpha(K,0)}
+    
+    holoColor(3,vec(200))
+    holoColor(4,vec(200))
+    holoColor(22,vec(200))
+    holoColor(23,vec(0,100,255))
+    holoColor(24,vec(0,100,255))
+    for(K=25,28) {holoColor(K,vec(0,100,255))}
+}
+
+RangerBas=rangerOffset(80,holoEntity(0):pos()+vec(25,0,5),-holoEntity(0):up())
+RangerAvant=rangerOffset(50,holoEntity(0):pos()+vec(0,0,-30),holoEntity(0):forward())
+holoPos(0,holoEntity(0):pos()+holoEntity(0):toWorldAxis(vec(5,0,40-RangerBas:distance())))
+
+
+if(changed(owner():keyAttack1())& owner():keyAttack1())
+{
+    holoAlpha(1,255)
+    holoAlpha(2,255)
+    holoAlpha(3,255)
+    holoAlpha(17,255)
+    holoAlpha(18,255)
+    holoAlpha(19,255)
+    holoAlpha(25,255)
+    holoAlpha(26,255)
+    holoAlpha(27,0)
+    holoAlpha(28,0)
+    
+    for(K=20,22) {holoAlpha(K,0)}
+}
+
+if(changed(owner():keyAttack2())&owner():keyAttack2())
+{
+    holoAlpha(1,0)
+    holoAlpha(2,0)
+    holoAlpha(3,0)
+    holoAlpha(17,0)
+    holoAlpha(18,0)
+    holoAlpha(19,0)
+    holoAlpha(25,0)
+    holoAlpha(26,0)
+    holoAlpha(27,255)
+    holoAlpha(28,255)
+    
+    for(K=20,22) {holoAlpha(K,255)}
+}
+
+
+if(RangerAvant:hit())
+{
+    holoAng(0,holoEntity(0):angles()+ang(0,45,0))
+}
+

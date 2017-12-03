@@ -1,0 +1,1101 @@
+@name Thx John Lewis <3
+@persist [Find Lse S1N S2N FileText]:array [S1 S2]:entity Cursor1X Cursor2X Cursor1Y Cursor2Y
+@persist [PionB PionN TourB TourN CavB CavN FouB FouN RoiB RoiN ReineB ReineN Cube ChangeModel Record Load Save Lse2M ModifStringModel1 ModifStringModel2 S2SPrint S2MPrint S1SPrint S1MPrint File]:string
+@persist SelectModel1:string SelectModel2:string S1S S2S S1OkCopy S2OkCopy S1M S2M S1TPressed S2TPressed PTTP  VarRecord VarLoad
+
+interval(100)
+if(first())
+{
+    runOnChat(1)
+    runOnFile(1)
+
+    ChangeModel="*change"
+    Record="*rec"
+    Load="*load"
+    Save="*save"
+    Cube="models/holograms/cube.mdl"
+    PionB="models/props_phx/games/chess/white_pawn.mdl"
+    PionN="models/props_phx/games/chess/black_pawn.mdl"
+    TourB="models/props_phx/games/chess/white_rook.mdl"
+    TourN="models/props_phx/games/chess/black_rook.mdl"
+    CavB="models/props_phx/games/chess/white_knight.mdl"
+    CavN="models/props_phx/games/chess/black_knight.mdl"
+    FouB="models/props_phx/games/chess/white_bishop.mdl"
+    FouN="models/props_phx/games/chess/black_bishop.mdl"
+    RoiB="models/props_phx/games/chess/white_king.mdl"
+    RoiN="models/props_phx/games/chess/black_king.mdl"
+    ReineB="models/props_phx/games/chess/white_queen.mdl"
+    ReineN="models/props_phx/games/chess/black_queen.mdl"
+    
+    function modifStringModel1()
+    {
+        if(SelectModel1==PionN) {ModifStringModel1="Pion Noir"}
+        if(SelectModel1==TourN) {ModifStringModel1="Tour Noire"}
+        if(SelectModel1==CavN) {ModifStringModel1="Cavalier Noir"}
+        if(SelectModel1==FouN) {ModifStringModel1="Fou Noir"}
+        if(SelectModel1==RoiN) {ModifStringModel1="Roi Noir"}
+        if(SelectModel1==ReineN) {ModifStringModel1="Reine Noire"}
+        
+        if(S1M==1) {S1MPrint="A1"}        if(S1M==2) {S1MPrint="B1"}         if(S1M==3) {S1MPrint="C1"}        if(S1M==4) {S1MPrint="D1"}
+        if(S1M==5) {S1MPrint="E1"}        if(S1M==6) {S1MPrint="F1"}         if(S1M==7) {S1MPrint="G1"}        if(S1M==8) {S1MPrint="H1"}       
+        if(S1M==9) {S1MPrint="A2"}        if(S1M==10) {S1MPrint="B2"}        if(S1M==11) {S1MPrint="C2"}       if(S1M==12) {S1MPrint="D2"}
+        if(S1M==13) {S1MPrint="E2"}       if(S1M==14) {S1MPrint="F2"}        if(S1M==15) {S1MPrint="G2"}       if(S1M==16) {S1MPrint="H2"}        
+        if(S1M==17) {S1MPrint="A3"}       if(S1M==18) {S1MPrint="B3"}        if(S1M==19) {S1MPrint="C3"}       if(S1M==20) {S1MPrint="D3"}
+        if(S1M==21) {S1MPrint="E3"}       if(S1M==22) {S1MPrint="F3"}        if(S1M==23) {S1MPrint="G3"}       if(S1M==24) {S1MPrint="H3"}        
+        if(S1M==25) {S1MPrint="A4"}       if(S1M==26) {S1MPrint="B4"}        if(S1M==27) {S1MPrint="C4"}       if(S1M==28) {S1MPrint="D4"}
+        if(S1M==29) {S1MPrint="E4"}       if(S1M==30) {S1MPrint="F4"}        if(S1M==31) {S1MPrint="G4"}       if(S1M==32) {S1MPrint="H4"}        
+        if(S1M==33) {S1MPrint="A5"}       if(S1M==34) {S1MPrint="B5"}        if(S1M==35) {S1MPrint="C5"}       if(S1M==36) {S1MPrint="D5"}
+        if(S1M==37) {S1MPrint="E5"}       if(S1M==38) {S1MPrint="F5"}        if(S1M==39) {S1MPrint="G5"}       if(S1M==40) {S1MPrint="H5"}        
+        if(S1M==41) {S1MPrint="A6"}       if(S1M==42) {S1MPrint="B6"}        if(S1M==43) {S1MPrint="C6"}       if(S1M==44) {S1MPrint="D6"}
+        if(S1M==45) {S1MPrint="E6"}       if(S1M==46) {S1MPrint="F6"}        if(S1M==47) {S1MPrint="G6"}       if(S1M==48) {S1MPrint="H6"}        
+        if(S1M==49) {S1MPrint="A7"}       if(S1M==50) {S1MPrint="B7"}        if(S1M==51) {S1MPrint="C7"}       if(S1M==52) {S1MPrint="D7"}
+        if(S1M==53) {S1MPrint="E7"}       if(S1M==54) {S1MPrint="F7"}        if(S1M==55) {S1MPrint="G7"}       if(S1M==56) {S1MPrint="H7"}       
+        if(S1M==57) {S1MPrint="A8"}       if(S1M==58) {S1MPrint="B8"}        if(S1M==59) {S1MPrint="C8"}       if(S1M==60) {S1MPrint="D8"}
+        if(S1M==61) {S1MPrint="E8"}       if(S1M==62) {S1MPrint="F8"}        if(S1M==63) {S1MPrint="G8"}       if(S1M==64) {S1MPrint="H8"}       
+        if(S1S==1) {S1SPrint="A1"}        if(S1S==2) {S1SPrint="B1"}         if(S1S==3) {S1SPrint="C1"}        if(S1S==4) {S1SPrint="D1"}
+        if(S1S==5) {S1SPrint="E1"}        if(S1S==6) {S1SPrint="F1"}         if(S1S==7) {S1SPrint="G1"}        if(S1S==8) {S1SPrint="H1"}       
+        if(S1S==9) {S1SPrint="A2"}        if(S1S==10) {S1SPrint="B2"}        if(S1S==11) {S1SPrint="C2"}       if(S1S==12) {S1SPrint="D2"}
+        if(S1S==13) {S1SPrint="E2"}       if(S1S==14) {S1SPrint="F2"}        if(S1S==15) {S1SPrint="G2"}       if(S1S==16) {S1SPrint="H2"}        
+        if(S1S==17) {S1SPrint="A3"}       if(S1S==18) {S1SPrint="B3"}        if(S1S==19) {S1SPrint="C3"}       if(S1S==20) {S1SPrint="D3"}
+        if(S1S==21) {S1SPrint="E3"}       if(S1S==22) {S1SPrint="F3"}        if(S1S==23) {S1SPrint="G3"}       if(S1S==24) {S1SPrint="H3"}        
+        if(S1S==25) {S1SPrint="A4"}       if(S1S==26) {S1SPrint="B4"}        if(S1S==27) {S1SPrint="C4"}       if(S1S==28) {S1SPrint="D4"}
+        if(S1S==29) {S1SPrint="E4"}       if(S1S==30) {S1SPrint="F4"}        if(S1S==31) {S1SPrint="G4"}       if(S1S==32) {S1SPrint="H4"}        
+        if(S1S==33) {S1SPrint="A5"}       if(S1S==34) {S1SPrint="B5"}        if(S1S==35) {S1SPrint="C5"}       if(S1S==36) {S1SPrint="D5"}
+        if(S1S==37) {S1SPrint="E5"}       if(S1S==38) {S1SPrint="F5"}        if(S1S==39) {S1SPrint="G5"}       if(S1S==40) {S1SPrint="H5"}        
+        if(S1S==41) {S1SPrint="A6"}       if(S1S==42) {S1SPrint="B6"}        if(S1S==43) {S1SPrint="C6"}       if(S1S==44) {S1SPrint="D6"}
+        if(S1S==45) {S1SPrint="E6"}       if(S1S==46) {S1SPrint="F6"}        if(S1S==47) {S1SPrint="G6"}       if(S1S==48) {S1SPrint="H6"}        
+        if(S1S==49) {S1SPrint="A7"}       if(S1S==50) {S1SPrint="B7"}        if(S1S==51) {S1SPrint="C7"}       if(S1S==52) {S1SPrint="D7"}
+        if(S1S==53) {S1SPrint="E7"}       if(S1S==54) {S1SPrint="F7"}        if(S1S==55) {S1SPrint="G7"}       if(S1S==56) {S1SPrint="H7"}        
+        if(S1S==57) {S1SPrint="A8"}       if(S1S==58) {S1SPrint="B8"}        if(S1S==59) {S1SPrint="C8"}       if(S1S==60) {S1SPrint="D8"}
+        if(S1S==61) {S1SPrint="E8"}       if(S1S==62) {S1SPrint="F8"}        if(S1S==63) {S1SPrint="G8"}       if(S1S==64) {S1SPrint="H8"}
+    }
+    
+    function modifStringModel2()
+    {
+        if(SelectModel2==PionB) {ModifStringModel2="Pion Noir"}
+        if(SelectModel2==TourB) {ModifStringModel2="Tour Noire"}
+        if(SelectModel2==CavB) {ModifStringModel2="Cavalier Noir"}
+        if(SelectModel2==FouB) {ModifStringModel2="Fou Noir"}
+        if(SelectModel2==RoiB) {ModifStringModel2="Roi Noir"}
+        if(SelectModel2==ReineB) {ModifStringModel2="Reine Noire"}
+        
+        if(S2M==1) {S2MPrint="A1"}        if(S2M==2) {S2MPrint="B1"}         if(S2M==3) {S2MPrint="C1"}        if(S2M==4) {S2MPrint="D1"}
+        if(S2M==5) {S2MPrint="E1"}        if(S2M==6) {S2MPrint="F1"}         if(S2M==7) {S2MPrint="G1"}        if(S2M==8) {S2MPrint="H1"}       
+        if(S2M==9) {S2MPrint="A2"}        if(S2M==10) {S2MPrint="B2"}        if(S2M==11) {S2MPrint="C2"}       if(S2M==12) {S2MPrint="D2"}
+        if(S2M==13) {S2MPrint="E2"}       if(S2M==14) {S2MPrint="F2"}        if(S2M==15) {S2MPrint="G2"}       if(S2M==16) {S2MPrint="H2"}       
+        if(S2M==17) {S2MPrint="A3"}       if(S2M==18) {S2MPrint="B3"}        if(S2M==19) {S2MPrint="C3"}       if(S2M==20) {S2MPrint="D3"}
+        if(S2M==21) {S2MPrint="E3"}       if(S2M==22) {S2MPrint="F3"}        if(S2M==23) {S2MPrint="G3"}       if(S2M==24) {S2MPrint="H3"}       
+        if(S2M==25) {S2MPrint="A4"}       if(S2M==26) {S2MPrint="B4"}        if(S2M==27) {S2MPrint="C4"}       if(S2M==28) {S2MPrint="D4"}
+        if(S2M==29) {S2MPrint="E4"}       if(S2M==30) {S2MPrint="F4"}        if(S2M==31) {S2MPrint="G4"}       if(S2M==32) {S2MPrint="H4"}        
+        if(S2M==33) {S2MPrint="A5"}       if(S2M==34) {S2MPrint="B5"}        if(S2M==35) {S2MPrint="C5"}       if(S2M==36) {S2MPrint="D5"}
+        if(S2M==37) {S2MPrint="E5"}       if(S2M==38) {S2MPrint="F5"}        if(S2M==39) {S2MPrint="G5"}       if(S2M==40) {S2MPrint="H5"}        
+        if(S2M==41) {S2MPrint="A6"}       if(S2M==42) {S2MPrint="B6"}        if(S2M==43) {S2MPrint="C6"}       if(S2M==44) {S2MPrint="D6"}
+        if(S2M==45) {S2MPrint="E6"}       if(S2M==46) {S2MPrint="F6"}        if(S2M==47) {S2MPrint="G6"}       if(S2M==48) {S2MPrint="H6"}        
+        if(S2M==49) {S2MPrint="A7"}       if(S2M==50) {S2MPrint="B7"}        if(S2M==51) {S2MPrint="C7"}       if(S2M==52) {S2MPrint="D7"}
+        if(S2M==53) {S2MPrint="E7"}       if(S2M==54) {S2MPrint="F7"}        if(S2M==55) {S2MPrint="G7"}       if(S2M==56) {S2MPrint="H7"}        
+        if(S2M==57) {S2MPrint="A8"}       if(S2M==58) {S2MPrint="B8"}        if(S2M==59) {S2MPrint="C8"}       if(S2M==60) {S2MPrint="D8"}
+        if(S2M==61) {S2MPrint="E8"}       if(S2M==62) {S2MPrint="F8"}        if(S2M==63) {S2MPrint="G8"}       if(S2M==64) {S2MPrint="H8"}        
+        if(S2S==1) {S2SPrint="A1"}        if(S2S==2) {S2SPrint="B1"}         if(S2S==3) {S2SPrint="C1"}        if(S2S==4) {S2SPrint="D1"}
+        if(S2S==5) {S2SPrint="E1"}        if(S2S==6) {S2SPrint="F1"}         if(S2S==7) {S2SPrint="G1"}        if(S2S==8) {S2SPrint="H1"}        
+        if(S2S==9) {S2SPrint="A2"}        if(S2S==10) {S2SPrint="B2"}        if(S2S==11) {S2SPrint="C2"}       if(S2S==12) {S2SPrint="D2"}
+        if(S2S==13) {S2SPrint="E2"}       if(S2S==14) {S2SPrint="F2"}        if(S2S==15) {S2SPrint="G2"}       if(S2S==16) {S2SPrint="H2"}        
+        if(S2S==17) {S2SPrint="A3"}       if(S2S==18) {S2SPrint="B3"}        if(S2S==19) {S2SPrint="C3"}       if(S2S==20) {S2SPrint="D3"}
+        if(S2S==21) {S2SPrint="E3"}       if(S2S==22) {S2SPrint="F3"}        if(S2S==23) {S2SPrint="G3"}       if(S2S==24) {S2SPrint="H3"}        
+        if(S2S==25) {S2SPrint="A4"}       if(S2S==26) {S2SPrint="B4"}        if(S2S==27) {S2SPrint="C4"}       if(S2S==28) {S2SPrint="D4"}
+        if(S2S==29) {S2SPrint="E4"}       if(S2S==30) {S2SPrint="F4"}        if(S2S==31) {S2SPrint="G4"}       if(S2S==32) {S2SPrint="H4"}        
+        if(S2S==33) {S2SPrint="A5"}       if(S2S==34) {S2SPrint="B5"}        if(S2S==35) {S2SPrint="C5"}       if(S2S==36) {S2SPrint="D5"}
+        if(S2S==37) {S2SPrint="E5"}       if(S2S==38) {S2SPrint="F5"}        if(S2S==39) {S2SPrint="G5"}       if(S2S==40) {S2SPrint="H5"}        
+        if(S2S==41) {S2SPrint="A6"}       if(S2S==42) {S2SPrint="B6"}        if(S2S==43) {S2SPrint="C6"}       if(S2S==44) {S2SPrint="D6"}
+        if(S2S==45) {S2SPrint="E6"}       if(S2S==46) {S2SPrint="F6"}        if(S2S==47) {S2SPrint="G6"}       if(S2S==48) {S2SPrint="H6"}       
+        if(S2S==49) {S2SPrint="A7"}       if(S2S==50) {S2SPrint="B7"}        if(S2S==51) {S2SPrint="C7"}       if(S2S==52) {S2SPrint="D7"}
+        if(S2S==53) {S2SPrint="E7"}       if(S2S==54) {S2SPrint="F7"}        if(S2S==55) {S2SPrint="G7"}       if(S2S==56) {S2SPrint="H7"}        
+        if(S2S==57) {S2SPrint="A8"}       if(S2S==58) {S2SPrint="B8"}        if(S2S==59) {S2SPrint="C8"}       if(S2S==60) {S2SPrint="D8"}
+        if(S2S==61) {S2SPrint="E8"}       if(S2S==62) {S2SPrint="F8"}        if(S2S==63) {S2SPrint="G8"}       if(S2S==64) {S2SPrint="H8"}
+    }
+            
+    #####Fonctions de deplacements####
+    function player1Move()
+    {
+            S1N=S1:driver():name():explode(" ")
+            holoAlpha(S1M,0) holoAlpha(S1S,255)
+            S1OkCopy=0
+            S1TPressed=0
+            holoAlpha(69,0)
+            PTTP=0
+            for(K=74,77) {holoAlpha(K,0)}
+            for(K=70,73) {holoAlpha(K,255)}
+            holoPos(68,holoEntity(64):pos()) Cursor1X=0 Cursor1Y=0
+            holoAlpha(67,0)
+            holoAlpha(65,255)
+            if(VarRecord==1)
+            {
+                modifStringModel1()
+                fileAppend(Lse2M+".txt",S1N:string(1)+" joue : "+ModifStringModel1+ " de "+S1MPrint+" en "+S1SPrint+"\n")
+            }
+            holoModel(S1S,SelectModel1)
+            holoModel(S1M,"models/holograms/cube.mdl")
+    }
+    
+    function player2Move()
+    {
+            S2N=S2:driver():name():explode(" ")
+            holoAlpha(S2M,0) holoAlpha(S2S,255)
+            S2OkCopy=0
+            S2TPressed=0
+            holoAlpha(69,0)
+            PTTP=1
+            for(K=70,73) {holoAlpha(K,0)}
+            for(K=74,77) {holoAlpha(K,255)}
+            holoPos(66,holoEntity(1):pos()) Cursor2X=0 Cursor2Y=0
+            holoAlpha(65,0)
+            holoAlpha(67,255)
+            if(VarRecord==1)
+            {
+                modifStringModel2()
+                fileAppend(Lse2M+".txt",S2N:string(1)+" joue : "+ModifStringModel2+ " de "+S2MPrint+" en "+S2SPrint+"\n")
+            }
+            holoModel(S2S,SelectModel2)
+            holoModel(S2M,"models/holograms/cube.mdl")
+    }
+    
+    function resetGame()
+    {
+    holoModel(1,TourB)
+    holoModel(2,CavB)
+    holoModel(3,FouB)
+    holoModel(4,ReineB)
+    holoModel(5,RoiB)
+    holoModel(6,FouB)
+    holoModel(7,CavB)
+    holoModel(8,TourB)
+    for(K=9,16) {holoModel(K,PionB)}
+    
+    holoModel(64,TourN)
+    holoModel(63,CavN)
+    holoModel(62,FouN)
+    holoModel(61,RoiN)
+    holoModel(60,ReineN)
+    holoModel(59,FouN)
+    holoModel(58,CavN)
+    holoModel(57,TourN)
+    for(K=49,56) {holoModel(K,PionN)}
+    for(K=1,64) {holoAlpha(K,255)}
+    for(K=17,48) {holoAlpha(K,0)}
+    for(K=70,77) {holoColor(K,vec(100,100,100)) holoAlpha(K,0)}
+    for(K=70,73) {holoAlpha(K,255)}
+    for(K=17,48) {holoModel(K,Cube) holoAlpha(K,0)}
+    holoAlpha(67,0)
+    holoAlpha(65,255)
+    PTTP=0
+    }
+    
+    function verifS2Blanc()
+    {
+        if(holoEntity(S2S):model()!=PionB & holoEntity(S2S):model()!=TourB & holoEntity(S2S):model()!=CavB & holoEntity(S2S):model()!=FouB & holoEntity(S2S):model()!=RoiB & holoEntity(S2S):model()!=ReineB) {player2Move()}
+    }
+    function verifS2isBlack()
+    {
+        if(holoEntity(S2S):model()==PionN | holoEntity(S2S):model()==TourN | holoEntity(S2S):model()==CavN | holoEntity(S2S):model()==FouN | holoEntity(S2S):model()==RoiN | holoEntity(S2S):model()==ReineN) {player2Move()}
+    }
+    
+    function verifS1Noir()
+    {
+        if(holoEntity(S1S):model()!=PionN & holoEntity(S1S):model()!=TourN & holoEntity(S1S):model()!=CavN & holoEntity(S1S):model()!=FouN & holoEntity(S1S):model()!=RoiN & holoEntity(S1S):model()!=ReineN) {player1Move()}
+    }
+    
+    function verifS1isWhite()
+    {
+        if(holoEntity(S1S):model()==PionB | holoEntity(S1S):model()==TourB | holoEntity(S1S):model()==CavB | holoEntity(S1S):model()==FouB | holoEntity(S1S):model()==RoiB | holoEntity(S1S):model()==ReineB) {player1Move()}
+    }
+    
+    function verifCoteBlanc()
+    {
+        if(S2S==S2M+1){verifS2Blanc()}
+        if(S2S==S2M+2 & holoEntity(S2S-1):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M+3 & holoEntity(S2S-1):model()==Cube & holoEntity(S2S-2):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M+4 & holoEntity(S2S-1):model()==Cube & holoEntity(S2S-2):model()==Cube & holoEntity(S2S-3):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M+5 & holoEntity(S2S-1):model()==Cube & holoEntity(S2S-2):model()==Cube & holoEntity(S2S-3):model()==Cube & holoEntity(S2S-4):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M+6 & holoEntity(S2S-1):model()==Cube & holoEntity(S2S-2):model()==Cube & holoEntity(S2S-3):model()==Cube & holoEntity(S2S-4):model()==Cube & holoEntity(S2S-5):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M+7 & holoEntity(S2S-1):model()==Cube & holoEntity(S2S-2):model()==Cube & holoEntity(S2S-3):model()==Cube & holoEntity(S2S-4):model()==Cube & holoEntity(S2S-5):model()==Cube & holoEntity(S2S-6):model()==Cube) {verifS2Blanc()}   
+                    
+        if(S2S==S2M-1){verifS2Blanc()}
+        if(S2S==S2M-2 & holoEntity(S2S+1):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M-3 & holoEntity(S2S+1):model()==Cube & holoEntity(S2S+2):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M-4 & holoEntity(S2S+1):model()==Cube & holoEntity(S2S+2):model()==Cube & holoEntity(S2S+3):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M-5 & holoEntity(S2S+1):model()==Cube & holoEntity(S2S+2):model()==Cube & holoEntity(S2S+3):model()==Cube & holoEntity(S2S+4):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M-6 & holoEntity(S2S+1):model()==Cube & holoEntity(S2S+2):model()==Cube & holoEntity(S2S+3):model()==Cube & holoEntity(S2S+4):model()==Cube & holoEntity(S2S+5):model()==Cube) {verifS2Blanc()}
+        if(S2S==S2M-7 & holoEntity(S2S+1):model()==Cube & holoEntity(S2S+2):model()==Cube & holoEntity(S2S+3):model()==Cube & holoEntity(S2S+4):model()==Cube & holoEntity(S2S+5):model()==Cube & holoEntity(S2S+6):model()==Cube) {verifS2Blanc()}    
+    }
+    
+    function verifCoteNoir()
+    {
+        if(S1S==S1M+1){verifS1Noir()}
+        if(S1S==S1M+2 & holoEntity(S1S-1):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M+3 & holoEntity(S1S-1):model()==Cube & holoEntity(S1S-2):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M+4 & holoEntity(S1S-1):model()==Cube & holoEntity(S1S-2):model()==Cube & holoEntity(S1S-3):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M+5 & holoEntity(S1S-1):model()==Cube & holoEntity(S1S-2):model()==Cube & holoEntity(S1S-3):model()==Cube & holoEntity(S1S-4):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M+6 & holoEntity(S1S-1):model()==Cube & holoEntity(S1S-2):model()==Cube & holoEntity(S1S-3):model()==Cube & holoEntity(S1S-4):model()==Cube & holoEntity(S1S-5):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M+7 & holoEntity(S1S-1):model()==Cube & holoEntity(S1S-2):model()==Cube & holoEntity(S1S-3):model()==Cube & holoEntity(S1S-4):model()==Cube & holoEntity(S1S-5):model()==Cube & holoEntity(S1S-6):model()==Cube) {verifS1Noir()}   
+                    
+        if(S1S==S1M-1){verifS1Noir()}
+        if(S1S==S1M-2 & holoEntity(S1S+1):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M-3 & holoEntity(S1S+1):model()==Cube & holoEntity(S1S+2):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M-4 & holoEntity(S1S+1):model()==Cube & holoEntity(S1S+2):model()==Cube & holoEntity(S1S+3):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M-5 & holoEntity(S1S+1):model()==Cube & holoEntity(S1S+2):model()==Cube & holoEntity(S1S+3):model()==Cube & holoEntity(S1S+4):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M-6 & holoEntity(S1S+1):model()==Cube & holoEntity(S1S+2):model()==Cube & holoEntity(S1S+3):model()==Cube & holoEntity(S1S+4):model()==Cube & holoEntity(S1S+5):model()==Cube) {verifS1Noir()}
+        if(S1S==S1M-7 & holoEntity(S1S+1):model()==Cube & holoEntity(S1S+2):model()==Cube & holoEntity(S1S+3):model()==Cube & holoEntity(S1S+4):model()==Cube & holoEntity(S1S+5):model()==Cube & holoEntity(S1S+6):model()==Cube) {verifS1Noir()}    
+    }
+    
+    function saveGame()
+    {
+        fileWrite(Lse:string(2)+".txt",holoEntity(1):model()+"//"+holoEntity(2):model()+"//"+holoEntity(3):model()+"//"+holoEntity(4):model()+"//"+holoEntity(5):model()+"//"+holoEntity(6):model()+"//"
+        +holoEntity(7):model()+"//"+holoEntity(8):model()+"//"+holoEntity(9):model()+"//"+holoEntity(10):model()+"//"+holoEntity(11):model()+"//"+holoEntity(12):model()+"//"+holoEntity(13):model()+"//"
+        +holoEntity(14):model()+"//"+holoEntity(15):model()+"//"+holoEntity(16):model()+"//"+holoEntity(17):model()+"//"+holoEntity(18):model()+"//"+holoEntity(19):model()+"//"+holoEntity(20):model()+"//"
+        +holoEntity(21):model()+"//"+holoEntity(22):model()+"//"+holoEntity(23):model()+"//"+holoEntity(24):model()+"//"+holoEntity(25):model()+"//"+holoEntity(26):model()+"//"+holoEntity(27):model()+"//"
+        +holoEntity(28):model()+"//"+holoEntity(29):model()+"//"+holoEntity(30):model()+"//"+holoEntity(31):model()+"//"+holoEntity(32):model()+"//"+holoEntity(33):model()+"//"+holoEntity(34):model()+"//"
+        +holoEntity(35):model()+"//"+holoEntity(36):model()+"//"+holoEntity(37):model()+"//"+holoEntity(38):model()+"//"+holoEntity(39):model()+"//"+holoEntity(40):model()+"//"+holoEntity(41):model()+"//"
+        +holoEntity(42):model()+"//"+holoEntity(43):model()+"//"+holoEntity(44):model()+"//"+holoEntity(45):model()+"//"+holoEntity(46):model()+"//"+holoEntity(47):model()+"//"+holoEntity(48):model()+"//"
+        +holoEntity(49):model()+"//"+holoEntity(50):model()+"//"+holoEntity(51):model()+"//"+holoEntity(52):model()+"//"+holoEntity(53):model()+"//"+holoEntity(54):model()+"//"+holoEntity(55):model()+"//"
+        +holoEntity(56):model()+"//"+holoEntity(57):model()+"//"+holoEntity(58):model()+"//"+holoEntity(59):model()+"//"+holoEntity(60):model()+"//"+holoEntity(61):model()+"//"+holoEntity(62):model()+"//"
+        +holoEntity(63):model()+"//"+holoEntity(64):model()+"//"+
+        
+        holoEntity(1):getAlpha()+"//"+holoEntity(2):getAlpha()+"//"+holoEntity(3):getAlpha()+"//"+holoEntity(4):getAlpha()+"//"+holoEntity(5):getAlpha()+"//"+holoEntity(6):getAlpha()+"//"
+        +holoEntity(7):getAlpha()+"//"+holoEntity(8):getAlpha()+"//"+holoEntity(9):getAlpha()+"//"+holoEntity(10):getAlpha()+"//"+holoEntity(11):getAlpha()+"//"+holoEntity(12):getAlpha()+"//"+holoEntity(13):getAlpha()+"//"
+        +holoEntity(14):getAlpha()+"//"+holoEntity(15):getAlpha()+"//"+holoEntity(16):getAlpha()+"//"+holoEntity(17):getAlpha()+"//"+holoEntity(18):getAlpha()+"//"+holoEntity(19):getAlpha()+"//"+holoEntity(20):getAlpha()+"//"
+        +holoEntity(21):getAlpha()+"//"+holoEntity(22):getAlpha()+"//"+holoEntity(23):getAlpha()+"//"+holoEntity(24):getAlpha()+"//"+holoEntity(25):getAlpha()+"//"+holoEntity(26):getAlpha()+"//"+holoEntity(27):getAlpha()+"//"
+        +holoEntity(28):getAlpha()+"//"+holoEntity(29):getAlpha()+"//"+holoEntity(30):getAlpha()+"//"+holoEntity(31):getAlpha()+"//"+holoEntity(32):getAlpha()+"//"+holoEntity(33):getAlpha()+"//"+holoEntity(34):getAlpha()+"//"
+        +holoEntity(35):getAlpha()+"//"+holoEntity(36):getAlpha()+"//"+holoEntity(37):getAlpha()+"//"+holoEntity(38):getAlpha()+"//"+holoEntity(39):getAlpha()+"//"+holoEntity(40):getAlpha()+"//"+holoEntity(41):getAlpha()+"//"
+        +holoEntity(42):getAlpha()+"//"+holoEntity(43):getAlpha()+"//"+holoEntity(44):getAlpha()+"//"+holoEntity(45):getAlpha()+"//"+holoEntity(46):getAlpha()+"//"+holoEntity(47):getAlpha()+"//"+holoEntity(48):getAlpha()+"//"
+        +holoEntity(49):getAlpha()+"//"+holoEntity(50):getAlpha()+"//"+holoEntity(51):getAlpha()+"//"+holoEntity(52):getAlpha()+"//"+holoEntity(53):getAlpha()+"//"+holoEntity(54):getAlpha()+"//"+holoEntity(55):getAlpha()+"//"
+        +holoEntity(56):getAlpha()+"//"+holoEntity(57):getAlpha()+"//"+holoEntity(58):getAlpha()+"//"+holoEntity(59):getAlpha()+"//"+holoEntity(60):getAlpha()+"//"+holoEntity(61):getAlpha()+"//"+holoEntity(62):getAlpha()+"//"
+        +holoEntity(63):getAlpha()+"//"+holoEntity(64):getAlpha()+"//"+PTTP:toString())
+        
+    }
+    #################################
+    
+    S1=seatSpawn("models/nova/jeep_seat.mdl",1)    
+    S1:setPos(entity():pos()+vec(0,-215,140))
+    S1:setAng(entity():angles())
+    
+    S2=seatSpawn("models/nova/jeep_seat.mdl",1)    
+    S2:setPos(entity():pos()+vec(0,215,140))
+    S2:setAng(entity():angles()+entity():toWorld(ang(0,180,0)))
+    
+    holoCreate(0)
+    holoModel(0,"models/props_phx/games/chess/board.mdl")
+    holoPos(0,entity():pos()+entity():toWorldAxis(vec(0,0,-5)))
+    holoAng(0,entity():angles()+entity():toWorld(ang(-90,0,0)))
+    
+    for(K=1,8)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+32)-(K*32.35),113.5,15)))
+    }
+    
+    for(K=9,16)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5)-((K-9)*32.35),81.5,15)))
+    }
+    
+    for(K=17,24)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-15)*32.35),49.5,15)))
+    }
+    
+    for(K=25,32)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-23)*32.35),17.5,15)))
+    }
+    
+    for(K=33,40)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-31)*32.35),-14.5,15)))
+    }
+    
+    for(K=41,48)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-39)*32.35),-46.5,15)))
+    }
+    
+    for(K=49,56)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-47)*32.35),-78.5,15)))
+    }
+    
+    for(K=57,64)
+    {
+        holoCreate(K)
+        holoPos(K,entity():pos()+entity():toWorldAxis(vec((113.5+64)-((K-55)*32.35),-110.5,15)))
+    }
+    
+    holoCreate(65)
+    holoModel(65,"models/sprops/misc/alphanum/alphanum_arrow_b.mdl")
+    holoScale(65,vec(1,1,1))
+    holoPos(65,holoEntity(1):pos()+holoEntity(1):toWorldAxis(vec(-12.5,10,0)))
+    holoAng(65,entity():angles()+entity():toWorld(ang(0,45,90)))
+    holoColor(65,vec(0,255,0))
+    holoMaterial(65,"models/debug/debugwhite")
+    
+    holoCreate(66)
+    holoAlpha(66,0)
+    holoPos(66,holoEntity(1):pos()+holoEntity(1):toWorldAxis(vec(0,0,0)))
+    holoEntity(65):parentTo(holoEntity(66))
+    
+    holoCreate(67)
+    holoModel(67,"models/sprops/misc/alphanum/alphanum_arrow_b.mdl")
+    holoScale(67,vec(1,1,1))
+    holoPos(67,holoEntity(64):pos()+holoEntity(64):toWorldAxis(vec(12.5,-10,0)))
+    holoAng(67,entity():angles()+entity():toWorld(ang(0,225,90)))
+    holoColor(67,vec(0,255,0))
+    holoMaterial(67,"models/debug/debugwhite")
+    
+    holoCreate(68)
+    holoAlpha(68,0)
+    holoPos(68,holoEntity(64):pos())
+    holoEntity(67):parentTo(holoEntity(68))
+    
+    holoCreate(69)
+    holoModel(69,"models/sprops/misc/alphanum/alphanum_arrow_b.mdl")
+    holoScale(69,vec(1,1,2.5))
+    holoColor(69,vec(255,93,0))
+    holoAng(69,entity():angles()+entity():toWorld(ang(180,0,0)))
+    holoMaterial(69,"models/debug/debugwhite")
+    holoAlpha(69,0)
+    
+    holoCreate(70)
+    holoModel(70,"models/sprops/misc/alphanum/alphanum_w.mdl")
+    holoScale(70,vec(1))
+    holoColor(70,vec(255,93,0))
+    holoPos(70,entity():pos()+entity():toWorldAxis(vec(80,-135,18)))
+    holoAng(70,entity():angles()+entity():toWorld(ang(0,180,90)))
+    holoMaterial(70,"models/debug/debugwhite")
+    
+    holoCreate(71)
+    holoModel(71,"models/sprops/misc/alphanum/alphanum_l_a.mdl")
+    holoScale(71,vec(1))
+    holoColor(71,vec(255,93,0))
+    holoPos(71,entity():pos()+entity():toWorldAxis(vec(92.5,-135,18)))
+    holoAng(71,entity():angles()+entity():toWorld(ang(0,180,90)))
+    holoMaterial(71,"models/debug/debugwhite")
+    
+    holoCreate(72)
+    holoModel(72,"models/sprops/misc/alphanum/alphanum_l_i.mdl")
+    holoScale(72,vec(1))
+    holoColor(72,vec(255,93,0))
+    holoPos(72,entity():pos()+entity():toWorldAxis(vec(100,-135,18)))
+    holoAng(72,entity():angles()+entity():toWorld(ang(0,180,90)))
+    holoMaterial(72,"models/debug/debugwhite")
+    
+    holoCreate(73)
+    holoModel(73,"models/sprops/misc/alphanum/alphanum_l_t.mdl")
+    holoScale(73,vec(1))
+    holoColor(73,vec(255,93,0))
+    holoPos(73,entity():pos()+entity():toWorldAxis(vec(105.5,-135,18)))
+    holoAng(73,entity():angles()+entity():toWorld(ang(0,180,90)))
+    holoMaterial(73,"models/debug/debugwhite")
+    
+    holoCreate(74)
+    holoModel(74,"models/sprops/misc/alphanum/alphanum_w.mdl")
+    holoScale(74,vec(1))
+    holoColor(74,vec(255,93,0))
+    holoPos(74,entity():pos()+entity():toWorldAxis(vec(-80,137.5,18)))
+    holoAng(74,entity():angles()+entity():toWorld(ang(0,0,90)))
+    holoMaterial(74,"models/debug/debugwhite")
+    
+    holoCreate(75)
+    holoModel(75,"models/sprops/misc/alphanum/alphanum_l_a.mdl")
+    holoScale(75,vec(1))
+    holoColor(75,vec(255,93,0))
+    holoPos(75,entity():pos()+entity():toWorldAxis(vec(-92.5,137.5,18)))
+    holoAng(75,entity():angles()+entity():toWorld(ang(0,0,90)))
+    holoMaterial(75,"models/debug/debugwhite")
+    
+    holoCreate(76)
+    holoModel(76,"models/sprops/misc/alphanum/alphanum_l_i.mdl")
+    holoScale(76,vec(1))
+    holoColor(76,vec(255,93,0))
+    holoPos(76,entity():pos()+entity():toWorldAxis(vec(-100,137.5,18)))
+    holoAng(76,entity():angles()+entity():toWorld(ang(0,0,90)))
+    holoMaterial(76,"models/debug/debugwhite")
+    
+    holoCreate(77)
+    holoModel(77,"models/sprops/misc/alphanum/alphanum_l_t.mdl")
+    holoScale(77,vec(1))
+    holoColor(77,vec(255,93,0))
+    holoPos(77,entity():pos()+entity():toWorldAxis(vec(-105.5,137.5,18)))
+    holoAng(77,entity():angles()+entity():toWorld(ang(0,0,90)))
+    holoMaterial(77,"models/debug/debugwhite")
+    
+    holoModel(1,TourB)
+    holoModel(2,CavB)
+    holoModel(3,FouB)
+    holoModel(4,ReineB)
+    holoModel(5,RoiB)
+    holoModel(6,FouB)
+    holoModel(7,CavB)
+    holoModel(8,TourB)
+    for(K=9,16) {holoModel(K,PionB)}
+    
+    holoModel(64,TourN)
+    holoModel(63,CavN)
+    holoModel(62,FouN)
+    holoModel(61,RoiN)
+    holoModel(60,ReineN)
+    holoModel(59,FouN)
+    holoModel(58,CavN)
+    holoModel(57,TourN)
+    for(K=49,56) {holoModel(K,PionN)}
+    for(K=1,64) {holoAlpha(K,255)}
+    for(K=17,48) {holoAlpha(K,0)}
+    for(K=70,77) {holoColor(K,vec(100,100,100)) holoAlpha(K,0)}
+    for(K=70,73) {holoAlpha(K,255)}
+    holoAlpha(67,0)
+}
+
+if(PTTP==1)
+{
+    if(S1:driver():keyRight()|S1:driver():keyLeft()|S1:driver():keyForward()|S1:driver():keyBack())
+    {    
+        if(S1:driver():keyRight()) {holoPos(68,holoEntity(68):pos()+holoEntity(68):toWorldAxis(vec(32.35,0,0)))  Cursor1X++}
+        if(S1:driver():keyLeft()) {holoPos(68,holoEntity(68):pos()+holoEntity(68):toWorldAxis(vec(-32.35,0,0)))  Cursor1X--}
+        if(S1:driver():keyForward()) {holoPos(68,holoEntity(68):pos()+holoEntity(68):toWorldAxis(vec(0,32,0)))        Cursor1Y++}
+        if(S1:driver():keyBack()) {holoPos(68,holoEntity(68):pos()+holoEntity(68):toWorldAxis(vec(0,-32,0)))     Cursor1Y--}
+        if(Cursor1X<0 | Cursor1X>7 | Cursor1Y<0 | Cursor1Y>7) {holoPos(68,holoEntity(64):pos()) Cursor1X=0 Cursor1Y=0}
+    }
+    
+    if(S1:driver():keyAttack2()|S1:driver():keyAttack1())
+    {
+        S1S=(64-(Cursor1Y*8))-Cursor1X
+        if(S1:driver():keyAttack2())
+        {
+            SelectModel1=holoEntity(S1S):model()
+            if(SelectModel1==PionN|SelectModel1==TourN|SelectModel1==CavN|SelectModel1==FouN|SelectModel1==RoiN|SelectModel1==ReineN)
+            {
+                S1M=S1S S1OkCopy=1 S1TPressed++
+                holoPos(69,holoEntity(S1S):pos()+vec(0,0,(holoEntity(S1S):height()*2)))
+                holoAlpha(69,255)
+            }
+        }
+    
+        if(S1:driver():keyAttack1())
+        {
+            if(S1OkCopy==1 & S1TPressed>0.5)
+            {
+                #####Cavalier#####
+                if(SelectModel1==CavN)
+                {
+                    if(S1M<17)
+                    {
+                        if(S1M==1){if(S1S==19|S1S==12){verifS1Noir()}}
+                        if(S1M==2){if(S1S==17|S1S==19|S1S==12){verifS1Noir()}}
+                        if(S1M==3|S1M==4|S1M==5|S1M==6){if(S1S==S1M+6|S1S==S1M+15|S1S==S1M+17|S1S==S1M+10){verifS1Noir()}}
+                        if(S1M==7){if(S1S==S1M+6|S1S==S1M+15|S1S==S1M+17){verifS1Noir()}}
+                        if(S1M==8){if(S1S==S1M+6|S1S==S1M+15){verifS1Noir()}}
+                        if(S1M==9){if(S1S==S1M+17|S1S==S1M+10|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==10){if(S1S==S1M+15|S1S==S1M+17|S1S==S1M-6|S1S==S1M+10){verifS1Noir()}}
+                        if(S1M==11|S1M==12|S1M==13|S1M==14){if(S1S==S1M+15|S1S==S1M+17|S1S==S1M-6|S1S==S1M+10|S1S==S1M-10|S1S==S1M+6){verifS1Noir()}}
+                        if(S1M==15){if(S1S==S1M+15|S1S==S1M+17|S1S==S1M+6|S1S==S1M-10){verifS1Noir()}}
+                        if(S1M==16){if(S1S==S1M+15|S1S==S1M-10|S1S==S1M+6){verifS1Noir()}}
+                    }
+                    if(S1M<49)
+                    {
+                        if(S1M==17|S1M==25|S1M==33|S1M==41){if(S1S==S1M+17|S1S==S1M+10|S1S==S1M-15|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==18|S1M==26|S1M==34|S1M==42){if(S1S==S1M+17|S1S==S1M+15|S1S==S1M-15|S1S==S1M-17|S1S==S1M+10|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==19|S1M==20|S1M==21|S1M==22|S1M==27|S1M==28|S1M==29|S1M==30|S1M==35|S1M==36|S1M==37|S1M==38|S1M==43|S1M==44|S1M==45|S1M==46){if(S1S==S1M+15|S1S==S1M+17|S1S==S1M+6|S1S==S1M+10|S1S==S1M-17|S1S==S1M-15|S1S==S1M-10|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==23|S1M==31|S1M==39|S1M==47){if(S1S==S1M+17|S1S==S1M+15|S1S==S1M-15|S1S==S1M-17|S1S==S1M+6|S1S==S1M-10){verifS1Noir()}}
+                        if(S1M==24|S1M==32|S1M==40|S1M==48){if(S1S==S1M+15|S1S==S1M+6|S1S==S1M-17|S1S==S1M-10){verifS1Noir()}}
+                    }
+                    if(S1M>48)
+                    {
+                        if(S1M==49){if(S1S==S1M+10|S1S==S1M-6|S1S==S1M-15){verifS1Noir()}}  
+                        if(S1M==50){if(S1S==S1M-17|S1S==S1M-15|S1S==S1M+10|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==51|S1M==52|S1M==53|S1M==54){if(S1S==S1M+15|S1S==S1M+6|S1S==S1M-17|S1S==S1M-15|S1S==S1M+10|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==55){if(S1S==S1M+6|S1S==S1M-10|S1S==S1M-15|S1S==S1M-17){verifS1Noir()}}
+                        if(S1M==56){if(S1S==S1M+6|S1S==S1M-10|S1S==S1M-17){verifS1Noir()}}
+                        if(S1M==57){if(S1S==S1M-6|S1S==S1M-15){verifS1Noir()}}
+                        if(S1M==58){if(S1S==S1M-17|S1S==S1M-15|S1S==S1M-6){verifS1Noir()}}
+                        if(S1M==59|S1M==60|S1M==61|S1M==62){if(S1S==S1M-17|S1S==S1M-10|S1S==S1M-6|S1S==S1M-15){verifS1Noir()}}
+                        if(S1M==63){if(S1S==S1M-10|S1S==S1M-17|S1S==S1M-15){verifS1Noir()}}
+                        if(S1M==64){if(S1S==S1M-10|S1S==S1M-17){verifS1Noir()}}
+                    }
+                }
+                
+                #######Fou#######
+                if(SelectModel1==FouN)
+                {
+                    if(S1S==S1M+9) {verifS1Noir()}
+                    if(S1S==S1M+18){if(holoEntity(S1S-9):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+27){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+36){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+45){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+54){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+63){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube & holoEntity(S1S-54):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+72){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube & holoEntity(S1S-54):model()==Cube & holoEntity(S1S-63):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M+7) {verifS1Noir()}
+                    if(S1S==S1M+14){if(holoEntity(S1S-7):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+21){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+28){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+35){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+42){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+49){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube & holoEntity(S1S-42):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+56){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube & holoEntity(S1S-42):model()==Cube & holoEntity(S1S-49):model()==Cube) {verifS1Noir()}}
+                    
+                    
+                    if(S1S==S1M-9) {verifS1Noir()}
+                    if(S1S==S1M-18){if(holoEntity(S1S+9):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-27){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-36){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-45){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-54){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-63){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube & holoEntity(S1S+54):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-72){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube & holoEntity(S1S+54):model()==Cube & holoEntity(S1S+63):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M-7) {verifS1Noir()}
+                    if(S1S==S1M-14){if(holoEntity(S1S+7):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-21){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-28){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-35){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-42){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-49){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube & holoEntity(S1S+42):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-56){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube & holoEntity(S1S+42):model()==Cube & holoEntity(S1S+49):model()==Cube) {verifS1Noir()}}
+                }
+                
+                #######Tour#######
+                if(SelectModel1==TourN)
+                {
+                    
+                    if(S1S==S1M+8){verifS1Noir()}
+                    if(S1S==S1M+16 & holoEntity(S1S-8):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+24 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+32 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+40 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+48 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube & holoEntity(S1S-40):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+56 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube & holoEntity(S1S-40):model()==Cube & holoEntity(S1S-48):model()==Cube) {verifS1Noir()}   
+                    
+                    if(S1S==S1M-8){verifS1Noir()}
+                    if(S1S==S1M-16 & holoEntity(S1S+8):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-24 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-32 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-40 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-48 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube & holoEntity(S1S+40):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-56 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube & holoEntity(S1S+40):model()==Cube & holoEntity(S1S+48):model()==Cube) {verifS1Noir()}
+                    
+                    if(S1M==1|S1M==2|S1M==3|S1M==4|S1M==5|S1M==6|S1M==7|S1M==8){if(S1S<9){verifCoteNoir()}} 
+                    if(S1M==9|S1M==10|S1M==11|S1M==12|S1M==13|S1M==14|S1M==15|S1M==16){if(S1S>8 & S1S<17){verifCoteNoir()}} 
+                    if(S1M==17|S1M==18|S1M==19|S1M==20|S1M==21|S1M==22|S1M==23|S1M==24){if(S1S>16 & S1S<25){verifCoteNoir()}} 
+                    if(S1M==25|S1M==26|S1M==27|S1M==28|S1M==29|S1M==30|S1M==31|S1M==32){if(S1S>24 & S1S<33){verifCoteNoir()}} 
+                    if(S1M==33|S1M==34|S1M==35|S1M==36|S1M==37|S1M==38|S1M==39|S1M==40){if(S1S>32 & S1S<41){verifCoteNoir()}} 
+                    if(S1M==41|S1M==42|S1M==43|S1M==44|S1M==45|S1M==46|S1M==47|S1M==48){if(S1S>40 & S1S<49){verifCoteNoir()}} 
+                    if(S1M==49|S1M==50|S1M==51|S1M==52|S1M==53|S1M==54|S1M==55|S1M==56){if(S1S>48 & S1S<57){verifCoteNoir()}} 
+                    if(S1M==57|S1M==58|S1M==59|S1M==60|S1M==61|S1M==62|S1M==63|S1M==64){if(S1S>56 & S1S<65){verifCoteNoir()}} 
+                    
+                }
+                
+                #######Reine#######
+                if(SelectModel1==ReineN)
+                {
+                    if(S1S==S1M+9) {verifS1Noir()}
+                    if(S1S==S1M+18){if(holoEntity(S1S-9):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+27){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+36){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+45){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+54){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+63){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube & holoEntity(S1S-54):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+72){if(holoEntity(S1S-9):model()==Cube & holoEntity(S1S-18):model()==Cube & holoEntity(S1S-27):model()==Cube & holoEntity(S1S-36):model()==Cube & holoEntity(S1S-45):model()==Cube & holoEntity(S1S-54):model()==Cube & holoEntity(S1S-63):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M+7) {verifS1Noir()}
+                    if(S1S==S1M+14){if(holoEntity(S1S-7):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+21){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+28){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+35){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+42){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+49){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube & holoEntity(S1S-42):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M+56){if(holoEntity(S1S-7):model()==Cube & holoEntity(S1S-14):model()==Cube & holoEntity(S1S-21):model()==Cube & holoEntity(S1S-28):model()==Cube & holoEntity(S1S-35):model()==Cube & holoEntity(S1S-42):model()==Cube & holoEntity(S1S-49):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M-9) {verifS1Noir()}
+                    if(S1S==S1M-18){if(holoEntity(S1S+9):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-27){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-36){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-45){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-54){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-63){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube & holoEntity(S1S+54):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-72){if(holoEntity(S1S+9):model()==Cube & holoEntity(S1S+18):model()==Cube & holoEntity(S1S+27):model()==Cube & holoEntity(S1S+36):model()==Cube & holoEntity(S1S+45):model()==Cube & holoEntity(S1S+54):model()==Cube & holoEntity(S1S+63):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M-7) {verifS1Noir()}
+                    if(S1S==S1M-14){if(holoEntity(S1S+7):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-21){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-28){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-35){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-42){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-49){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube & holoEntity(S1S+42):model()==Cube) {verifS1Noir()}}
+                    if(S1S==S1M-56){if(holoEntity(S1S+7):model()==Cube & holoEntity(S1S+14):model()==Cube & holoEntity(S1S+21):model()==Cube & holoEntity(S1S+28):model()==Cube & holoEntity(S1S+35):model()==Cube & holoEntity(S1S+42):model()==Cube & holoEntity(S1S+49):model()==Cube) {verifS1Noir()}}
+                    
+                    if(S1S==S1M+8){verifS1Noir()}
+                    if(S1S==S1M+16 & holoEntity(S1S-8):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+24 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+32 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+40 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+48 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube & holoEntity(S1S-40):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M+56 & holoEntity(S1S-8):model()==Cube & holoEntity(S1S-16):model()==Cube & holoEntity(S1S-24):model()==Cube & holoEntity(S1S-32):model()==Cube & holoEntity(S1S-40):model()==Cube & holoEntity(S1S-48):model()==Cube) {verifS1Noir()}   
+                    
+                    if(S1S==S1M-8){verifS1Noir()}
+                    if(S1S==S1M-16 & holoEntity(S1S+8):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-24 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-32 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-40 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-48 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube & holoEntity(S1S+40):model()==Cube) {verifS1Noir()}
+                    if(S1S==S1M-56 & holoEntity(S1S+8):model()==Cube & holoEntity(S1S+16):model()==Cube & holoEntity(S1S+24):model()==Cube & holoEntity(S1S+32):model()==Cube & holoEntity(S1S+40):model()==Cube & holoEntity(S1S+48):model()==Cube) {verifS1Noir()}
+                    
+                    if(S1M==1|S1M==2|S1M==3|S1M==4|S1M==5|S1M==6|S1M==7|S1M==8){if(S1S<9){verifCoteNoir()}} 
+                    if(S1M==9|S1M==10|S1M==11|S1M==12|S1M==13|S1M==14|S1M==15|S1M==16){if(S1S>8 & S1S<17){verifCoteNoir()}} 
+                    if(S1M==17|S1M==18|S1M==19|S1M==20|S1M==21|S1M==22|S1M==23|S1M==24){if(S1S>16 & S1S<25){verifCoteNoir()}} 
+                    if(S1M==25|S1M==26|S1M==27|S1M==28|S1M==29|S1M==30|S1M==31|S1M==32){if(S1S>24 & S1S<33){verifCoteNoir()}} 
+                    if(S1M==33|S1M==34|S1M==35|S1M==36|S1M==37|S1M==38|S1M==39|S1M==40){if(S1S>32 & S1S<41){verifCoteNoir()}} 
+                    if(S1M==41|S1M==42|S1M==43|S1M==44|S1M==45|S1M==46|S1M==47|S1M==48){if(S1S>40 & S1S<49){verifCoteNoir()}} 
+                    if(S1M==49|S1M==50|S1M==51|S1M==52|S1M==53|S1M==54|S1M==55|S1M==56){if(S1S>48 & S1S<57){verifCoteNoir()}} 
+                    if(S1M==57|S1M==58|S1M==59|S1M==60|S1M==61|S1M==62|S1M==63|S1M==64){if(S1S>56 & S1S<65){verifCoteNoir()}} 
+                }
+                
+                #######Roi#######
+                if(SelectModel1==RoiN)
+                {
+                    if(S1S==S1M+9) {verifS1Noir()}
+                    if(S1S==S1M+7) {verifS1Noir()}
+                    if(S1S==S1M-9) {verifS1Noir()}
+                    if(S1S==S1M-7) {verifS1Noir()}
+                    if(S1S==S1M+8) {verifS1Noir()}
+                    if(S1S==S1M-8) {verifS1Noir()}
+                    
+                    if(S1M==1|S1M==2|S1M==3|S1M==4|S1M==5|S1M==6|S1M==7|S1M==8){if(S1S==S1M+1|S1S==S1M-1 & S1S<9) {verifS1Noir()}}
+                    if(S1M==9|S1M==10|S1M==11|S1M==12|S1M==13|S1M==14|S1M==15|S1M==16){if(S1S==S1M+1|S1S==S1M-1 & S1S>8 & S1S<17) {verifS1Noir()}}
+                    if(S1M==17|S1M==18|S1M==19|S1M==20|S1M==21|S1M==22|S1M==23|S1M==24){if(S1S==S1M+1|S1S==S1M-1 & S1S>16 & S1S<25){verifS1Noir()}}
+                    if(S1M==25|S1M==26|S1M==27|S1M==28|S1M==29|S1M==30|S1M==31|S1M==32){if(S1S==S1M+1|S1S==S1M-1 & S1S>24 & S1S<33) {verifS1Noir()}}  
+                    if(S1M==33|S1M==34|S1M==35|S1M==36|S1M==37|S1M==38|S1M==39|S1M==40){if(S1S==S1M+1|S1S==S1M-1 & S1S>32 & S1S<41){verifS1Noir()}} 
+                    if(S1M==41|S1M==42|S1M==43|S1M==44|S1M==45|S1M==46|S1M==47|S1M==48){if(S1S==S1M+1|S1S==S1M-1 & S1S>40 & S1S<49) {verifS1Noir()}}
+                    if(S1M==49|S1M==50|S1M==51|S1M==52|S1M==53|S1M==54|S1M==55|S1M==56){if(S1S==S1M+1|S1S==S1M-1 & S1S>48 & S1S<57) {verifS1Noir()}}
+                    if(S1M==57|S1M==58|S1M==59|S1M==60|S1M==61|S1M==62|S1M==63|S1M==64){if(S1S==S1M+1|S1S==S1M-1 & S1S>56 & S1S<65) {verifS1Noir()}}
+                }
+                
+                #######Pion#######
+                if(SelectModel1==PionN)
+                {
+                    if(S1M==56)
+                    {
+                        if(S1S==48 & holoEntity(48):model()==Cube) {player1Move()}
+                        if(S1S==40 & holoEntity(48):model()==Cube & holoEntity(40):model()==Cube) {player1Move()}
+                        if(S1S==47){verifS1isWhite()}
+                    }  
+                    
+                    if(S1M==49)
+                    {
+                        if(S1S==41 & holoEntity(41):model()==Cube) {player1Move()}
+                        if(S1S==33 & holoEntity(41):model()==Cube & holoEntity(33):model()==Cube) {player1Move()}
+                        if(S1S==42){verifS1isWhite()}
+                    }   
+                    
+                    if(S1M==50|S1M==51|S1M==52|S1M==53|S1M==54|S1M==55)
+                    {
+                        if(S1S==S1M-8 & holoEntity(S1M-8):model()==Cube){player1Move()}
+                        if(S1S==S1M-16 & holoEntity(S1M-8):model()==Cube & holoEntity(S1M-16):model()==Cube) {player1Move()}
+                        if(S1S==S1M-7){verifS1isWhite()}
+                        if(S1S==S1M-9){verifS1isWhite()}
+                    }   
+                    
+                    if(S1M==48|S1M==40|S1M==32|S1M==24|S1M==16)
+                    {
+                        if(S1S==S1M-8 & holoEntity(S1M-8):model()==Cube) {player1Move()}
+                        if(S1S==S1M-9){verifS1isWhite()}
+                    }   
+                    
+                    if(S1M==41|S1M==33|S1M==25|S1M==17|S1M==9)
+                    {
+                        if(S1S==S1M-8 & holoEntity(S1M-8):model()==Cube) {player1Move()}
+                        if(S1S==S1M-7){verifS1isWhite()}
+                    }   
+                    
+                    if(S1M==10|S1M==11|S1M==12|S1M==13|S1M==14|S1M==15|S1M==18|S1M==19|S1M==20|S1M==21|S1M==22|S1M==23|S1M==26|S1M==27|S1M==28|S1M==29|S1M==30|S1M==31|S1M==34|S1M==35|S1M==36|S1M==37|S1M==38|S1M==39|S1M==42|S1M==43|S1M==44|S1M==45|S1M==46|S1M==47)
+                    {
+                        if(S1S==S1M-8 & holoEntity(S1M-8):model()==Cube) {player1Move()}
+                        if(S1S==S1M-7){verifS1isWhite()}
+                        if(S1S==S1M-9){verifS1isWhite()}
+                    }   
+                    #if(S1M==1|S1M==2|S1M==3|S1M==4|S1M==5|S1M==6|S1M==7|S1M==8)
+                }
+            }
+        }
+    }   
+}
+
+if(PTTP==0)
+{
+    if(S2:driver():keyRight()|S2:driver():keyLeft()|S2:driver():keyForward()|S2:driver():keyBack())
+    {
+        if(S2:driver():keyRight()) {holoPos(66,holoEntity(66):pos()+holoEntity(66):toWorldAxis(vec(-32.35,0,0))) Cursor2X++}
+        if(S2:driver():keyLeft()) {holoPos(66,holoEntity(66):pos()+holoEntity(66):toWorldAxis(vec(32.35,0,0)))   Cursor2X--}
+        if(S2:driver():keyForward()) {holoPos(66,holoEntity(66):pos()+holoEntity(66):toWorldAxis(vec(0,-32,0)))       Cursor2Y++}
+        if(S2:driver():keyBack()) {holoPos(66,holoEntity(66):pos()+holoEntity(66):toWorldAxis(vec(0,32,0)))      Cursor2Y--}
+        if(Cursor2X<0 | Cursor2X>7 | Cursor2Y<0 | Cursor2Y>7) {holoPos(66,holoEntity(1):pos()) Cursor2X=0 Cursor2Y=0}
+    }
+
+    if(S2:driver():keyAttack2()|S2:driver():keyAttack1())
+    {
+        S2S=((Cursor2Y*8)+Cursor2X)+1
+        if(S2:driver():keyAttack2())
+        {
+            SelectModel2=holoEntity(S2S):model()
+            if(SelectModel2==PionB|SelectModel2==TourB|SelectModel2==CavB|SelectModel2==FouB|SelectModel2==RoiB|SelectModel2==ReineB)
+            {
+              S2M=S2S S2OkCopy=1 S2TPressed++
+              holoPos(69,holoEntity(S2S):pos()+vec(0,0,(holoEntity(S2S):height()*2)))
+              holoAlpha(69,255)
+            }
+        }
+    
+        if(S2:driver():keyAttack1())
+        {
+            if(S2OkCopy==1 & S2TPressed>0.5)
+            {
+                #####Cavalier#####
+                if(SelectModel2==CavB)
+                {
+                    if(S2M<17)
+                    {
+                        if(S2M==1){if(S2S==19|S2S==12){verifS2Blanc()}}
+                        if(S2M==2){if(S2S==17|S2S==19|S2S==12){verifS2Blanc()}}
+                        if(S2M==3|S2M==4|S2M==5|S2M==6){if(S2S==S2M+6|S2S==S2M+15|S2S==S2M+17|S2S==S2M+10){verifS2Blanc()}}
+                        if(S2M==7){if(S2S==S2M+6|S2S==S2M+15|S2S==S2M+17){verifS2Blanc()}}
+                        if(S2M==8){if(S2S==S2M+6|S2S==S2M+15){verifS2Blanc()}}
+                        if(S2M==9){if(S2S==S2M+17|S2S==S2M+10|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==10){if(S2S==S2M+15|S2S==S2M+17|S2S==S2M-6|S2S==S2M+10){verifS2Blanc()}}
+                        if(S2M==11|S2M==12|S2M==13|S2M==14){if(S2S==S2M+15|S2S==S2M+17|S2S==S2M-6|S2S==S2M+10|S2S==S2M-10|S2S==S2M+6){verifS2Blanc()}}
+                        if(S2M==15){if(S2S==S2M+15|S2S==S2M+17|S2S==S2M+6|S2S==S2M-10){verifS2Blanc()}}
+                        if(S2M==16){if(S2S==S2M+15|S2S==S2M-10|S2S==S2M+6){verifS2Blanc()}}
+                    }
+                    if(S2M<49)
+                    {
+                        if(S2M==17|S2M==25|S2M==33|S2M==41){if(S2S==S2M+17|S2S==S2M+10|S2S==S2M-15|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==18|S2M==26|S2M==34|S2M==42){if(S2S==S2M+17|S2S==S2M+15|S2S==S2M-15|S2S==S2M-17|S2S==S2M+10|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==19|S2M==20|S2M==21|S2M==22|S2M==27|S2M==28|S2M==29|S2M==30|S2M==35|S2M==36|S2M==37|S2M==38|S2M==43|S2M==44|S2M==45|S2M==46){if(S2S==S2M+15|S2S==S2M+17|S2S==S2M+6|S2S==S2M+10|S2S==S2M-17|S2S==S2M-15|S2S==S2M-10|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==23|S2M==31|S2M==39|S2M==47){if(S2S==S2M+17|S2S==S2M+15|S2S==S2M-15|S2S==S2M-17|S2S==S2M+6|S2S==S2M-10){verifS2Blanc()}}
+                        if(S2M==24|S2M==32|S2M==40|S2M==48){if(S2S==S2M+15|S2S==S2M+6|S2S==S2M-17|S2S==S2M-10){verifS2Blanc()}}
+                    }
+                    if(S2M>48)
+                    {
+                        if(S2M==49){if(S2S==S2M+10|S2S==S2M-6|S2S==S2M-15){verifS2Blanc()}}  
+                        if(S2M==50){if(S2S==S2M-17|S2S==S2M-15|S2S==S2M+10|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==51|S2M==52|S2M==53|S2M==54){if(S2S==S2M+15|S2S==S2M+6|S2S==S2M-17|S2S==S2M-15|S2S==S2M+10|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==55){if(S2S==S2M+6|S2S==S2M-10|S2S==S2M-15|S2S==S2M-17){verifS2Blanc()}}
+                        if(S2M==56){if(S2S==S2M+6|S2S==S2M-10|S2S==S2M-17){verifS2Blanc()}}
+                        if(S2M==57){if(S2S==S2M-6|S2S==S2M-15){verifS2Blanc()}}
+                        if(S2M==58){if(S2S==S2M-17|S2S==S2M-15|S2S==S2M-6){verifS2Blanc()}}
+                        if(S2M==59|S2M==60|S2M==61|S2M==62){if(S2S==S2M-17|S2S==S2M-10|S2S==S2M-6|S2S==S2M-15){verifS2Blanc()}}
+                        if(S2M==63){if(S2S==S2M-10|S2S==S2M-17|S2S==S2M-15){verifS2Blanc()}}
+                        if(S2M==64){if(S2S==S2M-10|S2S==S2M-17){verifS2Blanc()}}
+                    }
+                    
+                }
+                #######Fou#######
+                if(SelectModel2==FouB)
+                {
+                    if(S2S==S2M+9) {verifS2Blanc()}
+                    if(S2S==S2M+18){if(holoEntity(S2S-9):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+27){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+36){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+45){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+54){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+63){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube & holoEntity(S2S-54):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+72){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube & holoEntity(S2S-54):model()==Cube & holoEntity(S2S-63):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M+7) {verifS2Blanc()}
+                    if(S2S==S2M+14){if(holoEntity(S2S-7):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+21){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+28){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+35){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+42){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+49){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube & holoEntity(S2S-42):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+56){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube & holoEntity(S2S-42):model()==Cube & holoEntity(S2S-49):model()==Cube) {verifS2Blanc()}}
+                    
+                    
+                    if(S2S==S2M-9) {verifS2Blanc()}
+                    if(S2S==S2M-18){if(holoEntity(S2S+9):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-27){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-36){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-45){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-54){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-63){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube & holoEntity(S2S+54):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-72){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube & holoEntity(S2S+54):model()==Cube & holoEntity(S2S+63):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M-7) {verifS2Blanc()}
+                    if(S2S==S2M-14){if(holoEntity(S2S+7):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-21){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-28){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-35){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-42){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-49){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube & holoEntity(S2S+42):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-56){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube & holoEntity(S2S+42):model()==Cube & holoEntity(S2S+49):model()==Cube) {verifS2Blanc()}}
+                }
+                
+                #######Pion#######
+                if(SelectModel2==PionB)
+                {
+                    if(S2M==9)
+                    {
+                        if(S2S==17 & holoEntity(17):model()==Cube) {player2Move()}
+                        if(S2S==25 & holoEntity(17):model()==Cube & holoEntity(25):model()==Cube) {player2Move()}
+                        if(S2S==18){verifS2isBlack()}
+                    }  
+                    
+                    if(S2M==16)
+                    {
+                        if(S2S==23 & holoEntity(23):model()==Cube) {player2Move()}
+                        if(S2S==32 & holoEntity(23):model()==Cube & holoEntity(32):model()==Cube) {player2Move()}
+                        if(S2S==23){verifS2isBlack()}
+                    }   
+                    
+                    if(S2M==10|S2M==11|S2M==12|S2M==13|S2M==14|S2M==15)
+                    {
+                        if(S2S==S2M+8 & holoEntity(S2M+8):model()==Cube){player2Move()}
+                        if(S2S==S2M+16 & holoEntity(S2M+8):model()==Cube & holoEntity(S2M+16):model()==Cube) {player2Move()}
+                        if(S2S==S2M+7){verifS2isBlack()}
+                        if(S2S==S2M+9){verifS2isBlack()}
+                    }   
+                    
+                    if(S2M==17|S2M==25|S2M==33|S2M==41|S2M==49)
+                    {
+                        if(S2S==S2M+8 & holoEntity(S2M+8):model()==Cube) {player2Move()}
+                        if(S2S==S2M+9){verifS2isBlack()}
+                    }   
+                    
+                    if(S2M==24|S2M==32|S2M==40|S2M==48|S2M==56)
+                    {
+                        if(S2S==S2M+8 & holoEntity(S2M+8):model()==Cube) {player2Move()}
+                        if(S2S==S2M+7){verifS2isBlack()}
+                    }   
+                    
+                    if(S2M==18|S2M==19|S2M==20|S2M==21|S2M==22|S2M==23|S2M==26|S2M==27|S2M==28|S2M==29|S2M==30|S2M==31|S2M==34|S2M==35|S2M==36|S2M==37|S2M==38|S2M==39|S2M==42|S2M==43|S2M==44|S2M==45|S2M==46|S2M==47|S2M==50|S2M==51|S2M==52|S2M==53|S2M==54|S2M==55)
+                    {
+                        if(S2S==S2M+8 & holoEntity(S2M+8):model()==Cube) {player2Move()}
+                        if(S2S==S2M+7){verifS2isBlack()}
+                        if(S2S==S2M+9){verifS2isBlack()}
+                    }   
+                    #if(S2M==57|S2M==58|S2M==59|S2M==60|S2M==61|S2M==62|S2M==63|S2M==64)
+                }
+                
+                #######Tour#######
+                if(SelectModel2==TourB)
+                {
+                    
+                    if(S2S==S2M+8){verifS2Blanc()}
+                    if(S2S==S2M+16 & holoEntity(S2S-8):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+24 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+32 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+40 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+48 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube & holoEntity(S2S-40):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+56 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube & holoEntity(S2S-40):model()==Cube & holoEntity(S2S-48):model()==Cube) {verifS2Blanc()}   
+                    
+                    if(S2S==S2M-8){verifS2Blanc()}
+                    if(S2S==S2M-16 & holoEntity(S2S+8):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-24 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-32 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-40 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-48 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube & holoEntity(S2S+40):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-56 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube & holoEntity(S2S+40):model()==Cube & holoEntity(S2S+48):model()==Cube) {verifS2Blanc()}
+                    
+                    if(S2M==1|S2M==2|S2M==3|S2M==4|S2M==5|S2M==6|S2M==7|S2M==8){if(S2S<9){verifCoteBlanc()}} 
+                    if(S2M==9|S2M==10|S2M==11|S2M==12|S2M==13|S2M==14|S2M==15|S2M==16){if(S2S>8 & S2S<17){verifCoteBlanc()}} 
+                    if(S2M==17|S2M==18|S2M==19|S2M==20|S2M==21|S2M==22|S2M==23|S2M==24){if(S2S>16 & S2S<25){verifCoteBlanc()}} 
+                    if(S2M==25|S2M==26|S2M==27|S2M==28|S2M==29|S2M==30|S2M==31|S2M==32){if(S2S>24 & S2S<33){verifCoteBlanc()}} 
+                    if(S2M==33|S2M==34|S2M==35|S2M==36|S2M==37|S2M==38|S2M==39|S2M==40){if(S2S>32 & S2S<41){verifCoteBlanc()}} 
+                    if(S2M==41|S2M==42|S2M==43|S2M==44|S2M==45|S2M==46|S2M==47|S2M==48){if(S2S>40 & S2S<49){verifCoteBlanc()}} 
+                    if(S2M==49|S2M==50|S2M==51|S2M==52|S2M==53|S2M==54|S2M==55|S2M==56){if(S2S>48 & S2S<57){verifCoteBlanc()}} 
+                    if(S2M==57|S2M==58|S2M==59|S2M==60|S2M==61|S2M==62|S2M==63|S2M==64){if(S2S>56 & S2S<65){verifCoteBlanc()}} 
+                    
+                }
+                #######Reine#######
+                if(SelectModel2==ReineB)
+                {
+                    if(S2S==S2M+9) {verifS2Blanc()}
+                    if(S2S==S2M+18){if(holoEntity(S2S-9):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+27){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+36){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+45){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+54){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+63){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube & holoEntity(S2S-54):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+72){if(holoEntity(S2S-9):model()==Cube & holoEntity(S2S-18):model()==Cube & holoEntity(S2S-27):model()==Cube & holoEntity(S2S-36):model()==Cube & holoEntity(S2S-45):model()==Cube & holoEntity(S2S-54):model()==Cube & holoEntity(S2S-63):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M+7) {verifS2Blanc()}
+                    if(S2S==S2M+14){if(holoEntity(S2S-7):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+21){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+28){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+35){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+42){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+49){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube & holoEntity(S2S-42):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M+56){if(holoEntity(S2S-7):model()==Cube & holoEntity(S2S-14):model()==Cube & holoEntity(S2S-21):model()==Cube & holoEntity(S2S-28):model()==Cube & holoEntity(S2S-35):model()==Cube & holoEntity(S2S-42):model()==Cube & holoEntity(S2S-49):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M-9) {verifS2Blanc()}
+                    if(S2S==S2M-18){if(holoEntity(S2S+9):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-27){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-36){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-45){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-54){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-63){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube & holoEntity(S2S+54):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-72){if(holoEntity(S2S+9):model()==Cube & holoEntity(S2S+18):model()==Cube & holoEntity(S2S+27):model()==Cube & holoEntity(S2S+36):model()==Cube & holoEntity(S2S+45):model()==Cube & holoEntity(S2S+54):model()==Cube & holoEntity(S2S+63):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M-7) {verifS2Blanc()}
+                    if(S2S==S2M-14){if(holoEntity(S2S+7):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-21){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-28){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-35){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-42){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-49){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube & holoEntity(S2S+42):model()==Cube) {verifS2Blanc()}}
+                    if(S2S==S2M-56){if(holoEntity(S2S+7):model()==Cube & holoEntity(S2S+14):model()==Cube & holoEntity(S2S+21):model()==Cube & holoEntity(S2S+28):model()==Cube & holoEntity(S2S+35):model()==Cube & holoEntity(S2S+42):model()==Cube & holoEntity(S2S+49):model()==Cube) {verifS2Blanc()}}
+                    
+                    if(S2S==S2M+8){verifS2Blanc()}
+                    if(S2S==S2M+16 & holoEntity(S2S-8):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+24 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+32 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+40 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+48 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube & holoEntity(S2S-40):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M+56 & holoEntity(S2S-8):model()==Cube & holoEntity(S2S-16):model()==Cube & holoEntity(S2S-24):model()==Cube & holoEntity(S2S-32):model()==Cube & holoEntity(S2S-40):model()==Cube & holoEntity(S2S-48):model()==Cube) {verifS2Blanc()}   
+                    
+                    if(S2S==S2M-8){verifS2Blanc()}
+                    if(S2S==S2M-16 & holoEntity(S2S+8):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-24 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-32 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-40 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-48 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube & holoEntity(S2S+40):model()==Cube) {verifS2Blanc()}
+                    if(S2S==S2M-56 & holoEntity(S2S+8):model()==Cube & holoEntity(S2S+16):model()==Cube & holoEntity(S2S+24):model()==Cube & holoEntity(S2S+32):model()==Cube & holoEntity(S2S+40):model()==Cube & holoEntity(S2S+48):model()==Cube) {verifS2Blanc()}
+                    
+                    if(S2M==1|S2M==2|S2M==3|S2M==4|S2M==5|S2M==6|S2M==7|S2M==8){if(S2S<9){verifCoteBlanc()}} 
+                    if(S2M==9|S2M==10|S2M==11|S2M==12|S2M==13|S2M==14|S2M==15|S2M==16){if(S2S>8 & S2S<17){verifCoteBlanc()}} 
+                    if(S2M==17|S2M==18|S2M==19|S2M==20|S2M==21|S2M==22|S2M==23|S2M==24){if(S2S>16 & S2S<25){verifCoteBlanc()}} 
+                    if(S2M==25|S2M==26|S2M==27|S2M==28|S2M==29|S2M==30|S2M==31|S2M==32){if(S2S>24 & S2S<33){verifCoteBlanc()}} 
+                    if(S2M==33|S2M==34|S2M==35|S2M==36|S2M==37|S2M==38|S2M==39|S2M==40){if(S2S>32 & S2S<41){verifCoteBlanc()}} 
+                    if(S2M==41|S2M==42|S2M==43|S2M==44|S2M==45|S2M==46|S2M==47|S2M==48){if(S2S>40 & S2S<49){verifCoteBlanc()}} 
+                    if(S2M==49|S2M==50|S2M==51|S2M==52|S2M==53|S2M==54|S2M==55|S2M==56){if(S2S>48 & S2S<57){verifCoteBlanc()}} 
+                    if(S2M==57|S2M==58|S2M==59|S2M==60|S2M==61|S2M==62|S2M==63|S2M==64){if(S2S>56 & S2S<65){verifCoteBlanc()}} 
+                }
+                
+                #######Roi#######
+                if(SelectModel2==RoiB)
+                {
+                    if(S2S==S2M+9) {verifS2Blanc()}
+                    if(S2S==S2M+7) {verifS2Blanc()}
+                    if(S2S==S2M-9) {verifS2Blanc()}
+                    if(S2S==S2M-7) {verifS2Blanc()}
+                    if(S2S==S2M+8) {verifS2Blanc()}
+                    if(S2S==S2M-8) {verifS2Blanc()}
+                    
+                    if(S2M==1|S2M==2|S2M==3|S2M==4|S2M==5|S2M==6|S2M==7|S2M==8){if(S2S==S2M+1|S2S==S2M-1 & S2S<9) {verifS2Blanc()}}
+                    if(S2M==9|S2M==10|S2M==11|S2M==12|S2M==13|S2M==14|S2M==15|S2M==16){if(S2S==S2M+1|S2S==S2M-1 & S2S>8 & S2S<17) {verifS2Blanc()}}
+                    if(S2M==17|S2M==18|S2M==19|S2M==20|S2M==21|S2M==22|S2M==23|S2M==24){if(S2S==S2M+1|S2S==S2M-1 & S2S>16 & S2S<25){verifS2Blanc()}}
+                    if(S2M==25|S2M==26|S2M==27|S2M==28|S2M==29|S2M==30|S2M==31|S2M==32){if(S2S==S2M+1|S2S==S2M-1 & S2S>24 & S2S<33) {verifS2Blanc()}}  
+                    if(S2M==33|S2M==34|S2M==35|S2M==36|S2M==37|S2M==38|S2M==39|S2M==40){if(S2S==S2M+1|S2S==S2M-1 & S2S>32 & S2S<41){verifS2Blanc()}} 
+                    if(S2M==41|S2M==42|S2M==43|S2M==44|S2M==45|S2M==46|S2M==47|S2M==48){if(S2S==S2M+1|S2S==S2M-1 & S2S>40 & S2S<49) {verifS2Blanc()}}
+                    if(S2M==49|S2M==50|S2M==51|S2M==52|S2M==53|S2M==54|S2M==55|S2M==56){if(S2S==S2M+1|S2S==S2M-1 & S2S>48 & S2S<57) {verifS2Blanc()}}
+                    if(S2M==57|S2M==58|S2M==59|S2M==60|S2M==61|S2M==62|S2M==63|S2M==64){if(S2S==S2M+1|S2S==S2M-1 & S2S>56 & S2S<65) {verifS2Blanc()}} 
+                }
+            }
+        }
+    }
+} 
+
+if(chatClk())
+{
+    Lse=owner():lastSaid():explode(" ")
+    if(lastSpoke()==owner())
+    {
+        if(owner():lastSaid()=="*reset")
+        {
+             hideChat(1)
+             resetGame()
+        }
+        
+        if(Lse:string(1)==ChangeModel)
+        {
+            hideChat(1)
+            if(Lse:string(3)=="PionB") {holoModel(Lse:string(2):toNumber(),PionB)}
+            if(Lse:string(3)=="PionN") {holoModel(Lse:string(2):toNumber(),PionN)}
+            if(Lse:string(3)=="TourB") {holoModel(Lse:string(2):toNumber(),TourB)}
+            if(Lse:string(3)=="TourN") {holoModel(Lse:string(2):toNumber(),TourN)}
+            if(Lse:string(3)=="CavB") {holoModel(Lse:string(2):toNumber(),CavB)}
+            if(Lse:string(3)=="CavN") {holoModel(Lse:string(2):toNumber(),CavN)}
+            if(Lse:string(3)=="FouB") {holoModel(Lse:string(2):toNumber(),FouB)}
+            if(Lse:string(3)=="FouN") {holoModel(Lse:string(2):toNumber(),FouN)}
+            if(Lse:string(3)=="ReineB") {holoModel(Lse:string(2):toNumber(),ReineB)}
+            if(Lse:string(3)=="ReineN") {holoModel(Lse:string(2):toNumber(),ReineN)}
+            if(Lse:string(3)=="RoiB") {holoModel(Lse:string(2):toNumber(),RoiB)}
+            if(Lse:string(3)=="RoiN") {holoModel(Lse:string(2):toNumber(),RoiN)}
+            if(Lse:string(3)=="Cube") {holoModel(Lse:string(2):toNumber(),Cube)}
+            
+            if(Lse:string(4)=="0") {holoAlpha(Lse:string(2):toNumber(),0)}
+            if(Lse:string(4)=="1") {holoAlpha(Lse:string(2):toNumber(),255)}
+        }
+        
+        if(Lse:string(1)==Record)
+        {
+            hideChat(1)
+            if(VarRecord==0)
+            {
+                VarRecord=1
+                fileWrite(Lse:string(2)+".txt","Match opposant "+S2:driver():name()+" (Blancs) a "+S1:driver():name()+" (Noirs)\n")
+                Lse2M=Lse:string(2)   
+                printColor(vec(255),"[",vec(0,175,0),"Record",vec(255),"]",vec(255),": L'enregistrement de la partie a debute")
+            }else{printColor(vec(255),"[",vec(255,0,0),"Record",vec(255),"]",vec(255),": Cette partie est deja en cours d'enregistrement")}
+        }
+        
+        if(Lse:string(1)=="/recStop")
+        {
+            hideChat(1)
+            VarRecord=0
+            printColor(vec(255),"[",vec(255,0,0),"RecordStop",vec(255),"]",vec(255),": Vous avez mis fin a l'enregistrement de la partie")
+        }
+        
+        if(Lse:string(1)=="/cmd")
+        {
+            hideChat(1)
+            printColor(vec(255),"[",vec(220,0,255),"/change",vec(255),"]",vec(255),": Change le model d'un holo")
+            printColor(vec(220,0,255),"/change indexHolo Model 1/0")
+            printColor(vec(255),"[",vec(0,175,0),"/rec",vec(255),"]",vec(255),": Enregistre les coups joues")
+            printColor(vec(0,175,0),"/rec NomDuFichierSauvegarde")
+            printColor(vec(255),"[",vec(255,0,0),"recStop",vec(255),"]",vec(255),": Stoppe l'enregistrement")
+            printColor(vec(255),"[",vec(255,93,0),"/save",vec(255),"]",vec(255),": Sauvegarde la partie actuelle")
+            printColor(vec(255,93,0),"/save NomDuFichier",vec(255))
+            printColor(vec(255),"[",vec(0,255,255),"/load",vec(255),"]",vec(255),": Charge une partie sauvegardee")
+            printColor(vec(0,255,255),"/load NomDuFichier")
+        }
+        
+        if(Lse:string(1)==Save)
+        {
+            hideChat(1)
+            saveGame()
+            printColor(vec(255),"[",vec(255,93,0),"Save",vec(255),"]",vec(255),": La progression de cette partie a ete sauvegardee sous le nom "+Lse:string(2)+".txt")
+        }
+        
+        if(Lse:string(1)==Load)
+        {
+            hideChat(1)
+            fileLoad(Lse:string(2)+".txt")
+        }
+    }    
+}
+
+if(fileClk() & fileLoaded())
+{
+    File=fileRead() FileText=File:explode("//")
+    for(K=1,64)
+    {
+         holoModel(K,FileText:string(K))
+         holoAlpha(K,FileText:string(K+64):toNumber())  
+    }
+    if(FileText:string(129):toNumber()==1) {PTTP=1 holoAlpha(65,0) holoAlpha(67,255)}
+    if(FileText:string(129):toNumber()==0) {PTTP=0 holoAlpha(65,255) holoAlpha(67,0)}
+    printColor(vec(255),"[",vec(0,255,255),"Load",vec(255),"]",vec(255),": La partie a ete chargee")
+}
