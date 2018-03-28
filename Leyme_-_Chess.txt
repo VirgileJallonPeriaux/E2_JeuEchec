@@ -1,0 +1,442 @@
+@name Leyme - Chess
+@persist Pieces:array IdSpawn Echelle:vector HauteurPlateau:vector
+@persist [ CmdChar ]:string PartieEnCours:number SecondeSaisie:number Map:array [ SelectionPiece ValidationPiece ]:number
+
+
+interval(100)
+if(first())
+{
+    runOnChat(1)
+    concmd("wire_expression2_unlimited 1")
+    CmdChar = "*"
+    SecondeSaisie = 0
+    PartieEnCours = 0
+    ArrayPersist = array()
+    
+    entity():setPersistent(1)
+    entity():setAlpha(0)
+    
+    function void spawnEchiquier(Scale:vector)
+    {
+        if(holoEntity(1):isValid()){for(K=65,96){holoAlpha(K,0)}}
+        
+        HauteurPlateau = Scale * vec(1,1,0.25)
+        Echelle = Scale
+        holoCreate(0)
+        holoScale(0,HauteurPlateau)
+        
+        Colonne = 0
+        X = 3.5
+        Y = 3.5
+        for(M=1,8)
+        {
+            for(Ligne=1,8)
+            {
+                Index = Colonne+Ligne
+                Color = (Index+M)%2 ? vec(255) : vec(0)
+                holoCreate(Index,entity():pos()+entity():toWorldAxis(vec(X*holoScaleUnits(0):x(),Y*holoScaleUnits(0):y(),holoScaleUnits(0):z()/2)),HauteurPlateau,ang(vec(0)),Color)
+                holoParent(Index,entity())
+                X--
+            }
+            Y--
+            X=3.5
+            Colonne+=8
+        }
+
+        
+        Pieces = array()
+        Pieces:pushString("rook")
+        Pieces:pushString("knight")
+        Pieces:pushString("bishop")
+        Pieces:pushString("queen")
+        Pieces:pushString("king")
+        Pieces:pushString("bishop")
+        Pieces:pushString("knight")
+        Pieces:pushString("rook")
+    
+        timer("spawnPiece",100)
+        IdSpawn = 1
+    }
+    
+    
+    
+    
+    function number array:numeroPieceSurCase(Case)
+    {
+        Retour = -1
+        for(K=1,This:count())
+        {
+            if(This[K,number] == Case) {Retour = K break}
+  
+        }
+        return Retour    
+    }
+    
+    
+    function void array:deplacerPiece(CaseOrigine , CaseArrivee)
+    { 
+        #modifier sa position
+        for(K=1,This:count())
+        {
+            if(This[K,number] == CaseOrigine)
+            { 
+                #supprimer la piece mangee (si il n'y en a pas, rien ne se passe)
+                This[This:numeroPieceSurCase(CaseArrivee),number] = 0
+                
+                #terminer le deplacement de la piece
+                This[K,number] = CaseArrivee
+                break
+            }    
+        }  
+    }
+    
+    function number array:caseVide(Case)
+    {
+        Retour = 1
+        for(K=1,This:count())
+        {
+             if(This[K,number] == Case) {Retour = 0 break}   
+        }
+        return Retour    
+    }
+        
+    function number array:pieceCouleurSurCase(Case , Couleur)
+    {
+        Retour = 0
+        for(K=1,This:count())
+        {
+            if(This[K,number] == Case)
+            {
+                if(This[K+1,number] == Couleur)
+                {
+                    Retour = 1    
+                }
+                break   
+            }    
+        }
+        return Retour
+    }
+    
+    function number getCase(X,Y)   { return (Y-1)*8+X }
+    function number getCaseX(Case) { return Case%8 != 0 ? Case%8 : 8 }
+    function number getCaseY(Case) { return Case%8 != 0 ? ((Case-(Case%8))/8)+1 : ((Case-(Case%8))/8) }
+    
+    
+    function array moveCavalier(Case)
+    {
+        X = getCaseX(Case)
+        Y = getCaseY(Case)
+        Moves = array()
+        TableN = array(17,15,10,6,-6,-10,-15,-17)
+        TableX = array(1,-1,2,-2,2,-2,1,-1)
+        TableY = array(2,2,1,1,-1,-1,-2,-2)
+        CouleurPiece = Map:numeroPieceSurCase(Case)<=16 ? 1 : 0
+                        
+        for(K=1,TableN:count())
+        {
+            PosX = X+TableX[K,number]
+            PosY = Y+TableY[K,number]
+            
+            if(PosX>0 && PosX<9 && PosY>0 && PosY<9)
+            {
+
+                NumeroPieceSurCase = Map:numeroPieceSurCase(Case+TableN[K,number])
+                CouleurPieceRencontree =  NumeroPieceSurCase <= 16 ? 1 : 0
+
+                if( (CouleurPiece != CouleurPieceRencontree) || NumeroPieceSurCase == -1)
+                {
+                    Moves:pushNumber(Case+TableN[K,number])   
+                }
+            }  
+        }
+        return Moves
+    }
+    
+    function array move(Case:number , TableN:array , TableX:array , TableY:array)
+    {
+        Xpersist = getCaseX(Case)
+        Ypersist = getCaseY(Case)
+        
+        Moves = array()
+        
+        CouleurPiece = Map:numeroPieceSurCase(Case)<=16 ? 1 : 0
+        
+        for(K=1, TableN:count())
+        {
+            X=Xpersist
+            Y=Ypersist
+            Diagonale = Case
+            
+            while(X!=TableX[K,number] && Y!=TableY[K,number] && Diagonale>0)
+            {
+                Diagonale = Diagonale + TableN[K,number]
+                CouleurPieceRencontree = Map:numeroPieceSurCase(Diagonale)<=16 ? 1 : 0
+                
+                if(Map:caseVide(Diagonale))
+                {
+                    X=getCaseX(Diagonale)
+                    Y=getCaseY(Diagonale)
+                    Moves:pushNumber(Diagonale)
+                }
+                elseif( (CouleurPiece != CouleurPieceRencontree) && CouleurPieceRencontree != -1)
+                {
+                    X=getCaseX(Diagonale)
+                    Y=getCaseY(Diagonale)
+                    Moves:pushNumber(Diagonale)
+                    break   
+                }
+                else
+                {
+                   break 
+                }
+            }
+        }
+        return Moves
+    }
+    
+    function array moveFou(Case)
+    {
+        return move(Case , array(-9,-7,9,7) , array(1,8,8,1) , array(1,1,8,8))
+    }
+    
+    function array moveTour(Case)
+    {
+        return move(Case , array(-8,8,-1,1) , array(1,8,1,8) , array(1,1,8,8))
+    }
+    
+    function array moveReine(Case)
+    {
+        A = moveFou(Case)
+        B = moveTour(Case)
+        return A:add(B)
+    }
+    
+    #function array moveRoi(Case)
+    #{
+    #    Moves = array()
+    #}
+    
+    
+    function array movePion(Case)
+    {
+
+        CouleurPiece = Map:numeroPieceSurCase(Case)<=16 ? 1 : 0
+        
+        if(CouleurPiece == 1)
+        {
+            Y = getCaseY(Case)
+            if(Y==2)
+            {
+                print("2")
+            }
+            elseif(Y<8)
+            {
+                print("<8")
+            }
+            else
+            {
+                print("remontee a dame")    
+            }
+        }
+        else
+        {
+            
+        }
+        
+        return Moves
+    }
+    
+    spawnEchiquier(vec(1))
+}
+
+###############################################################
+####################### FIN if(first()) #######################
+###############################################################
+
+
+
+if(clk("spawnPiece"))
+{
+    Z = holoScaleUnits(0):z()/2
+    if(IdSpawn<9)
+    {
+        Model = Pieces[IdSpawn,string]
+        Angle = Model == "knight" ? ang(0,-90,0) : ang(0)
+        
+        # Piece blanche puis noire
+        holoCreate(64+IdSpawn , holoEntity(IdSpawn):pos()+vec(0,0,Z) , Echelle/1.75 , Angle , vec(255) , "models/props_phx/games/chess/white_"+Model+".mdl")
+        holoCreate(80+IdSpawn, holoEntity(56+IdSpawn):pos()+vec(0,0,Z) , Echelle/1.75 , -Angle , vec(255) , "models/props_phx/games/chess/black_"+Model+".mdl")
+    }
+    else
+    {
+        # Pion blanc puis noir
+        holoCreate(64+IdSpawn, holoEntity(IdSpawn):pos()+vec(0,0,Z) , Echelle/1.75 , ang(0) , vec(255) , "models/props_phx/games/chess/white_pawn.mdl")
+        holoCreate(80+IdSpawn, holoEntity(40+IdSpawn):pos()+vec(0,0,Z) , Echelle/1.75 , ang(0) , vec(255) , "models/props_phx/games/chess/black_pawn.mdl")
+    }
+    
+    holoAlpha(64+IdSpawn , 0)
+    holoAlpha(80+IdSpawn , 0)
+    holoParent(64+IdSpawn , entity())
+    holoParent(80+IdSpawn , entity())
+    setName("Leyme - Chess [Chargement des pieces] "+((IdSpawn*2)/32)*100+"%")
+    
+    IdSpawn++
+    if(IdSpawn<17)
+    {
+        timer("spawnPiece",150)
+    }
+    else
+    {
+        holoDelete(0)
+        entity():setPersistent(0)
+        
+        for(K=65,80)
+        {
+            holoAlpha(K,255)
+            #Map:pushNumber(K)
+            Map:pushNumber(K-64)
+            #Map:pushNumber(1)
+        }
+        for(K=1,16)
+        {
+            holoAlpha(80+K,255)
+            #Map:pushNumber(K)
+            Map:pushNumber(65-K)
+            #Map:pushNumber(0)
+        }
+        setName("Leyme - Chess")    
+        #print(Map)
+        #Map:deplacerPiece(2,64)
+        #print(Map) 
+        #print(Map:caseVide(5))
+        
+        #Map:deplacerPiece(64,35)
+        #Map:deplacerPiece(1,38)
+        M = moveCavalier(10)
+        #holoColor(35,vec(0,255,0))
+        #print(M)
+        for(K=1,M:count())
+        {
+            holoColor(M[K,number],vec(255,93,0))    
+        }
+        
+    }
+}
+
+###############################################################
+####################### FIN timer spawn #######################
+###############################################################
+
+if(chatClk(owner()))
+{
+    LS = owner():lastSaid()
+    if(LS[1] == CmdChar)
+    {
+        hideChat(1)
+        
+        LS = LS:sub(2,LS:unicodeLength())
+        Split = LS:explode(" ")
+        
+        switch(Split[1,string])
+        {
+            
+            case "spawn",
+            if(!PartieEnCours)
+            {
+                if(Split[2,string]:toNumber(10))
+                {
+                    Scale = vec(Split[2,string]:toNumber(10))
+                    
+                    if(Split[3,string] != "")
+                    {
+                        if(Split[3,string]:toNumber(10) == 0)
+                        {
+                            entity():teleport(owner():pos())    #COMMENT setPos au lieu de teleport
+                            #COMMENT    setAngle owner() angles droits sinon cases font des diagonales
+                            print("Spawn [position changee]")
+                            spawnEchiquier(Scale)
+                        }
+                        else
+                        {
+                            print("Spawn [position inchangee]")
+                        }
+                    }
+                    else
+                    {
+                        spawnEchiquier(Scale)
+                        print("spawn [echelle]")   
+                    }
+                }
+                else
+                {
+                    print("*spawn <scale[n]> <pos[n]> {0 pour owner():pos()} ")
+                }
+            }
+            else
+            {
+                print("Une partie est actuellement en cours. Terminez celle-ci avant de spawn de nouveau l'echiquier")
+                print("Voir la commande <"+CmdChar+"quitter>")
+            }
+            break
+            
+            
+            case "jouer",
+                #COMMENT verifier qu'une partie n'est pas deja en cours
+                print("Demarrage d'une nouvelle partie")
+                PartieEnCours = 1
+            break
+            
+            
+            case "quitter",
+                if(PartieEnCours)
+                {
+                    print("Une partie est en cours. Pour mettre fin a celle-ci ressaisissez <"+CmdChar+"quitter>")
+                    if(SecondeSaisie)
+                    {
+                        PartieEnCours = 0
+                        print("Vous avez mis fin a la partie")
+                        spawnEchiquier(Echelle)
+                        SecondeSaisie = 0
+                    }
+                    else
+                    {
+                        SecondeSaisie = 1
+                    }
+                }
+                else
+                {
+                    print("Aucune partie n'est actuellement en cours")    
+                }
+                
+            break
+            
+            
+            
+            default,
+                print("Cette commande est inexistante [default]")
+                SecondeSaisie = 0
+            break    
+        }
+          
+    }    
+}
+
+###############################################################
+######################### FIN chat clk ########################
+###############################################################
+
+
+if(changed(owner():keyAttack2()) && owner():keyAttack2())
+{
+    # ajouter find uniquement holos
+    
+    #findInSphere(owner():aimPos(),0.25)
+    #Find=findToArray()
+    # ou juste find()
+    
+    #for(K=1,Find:count())
+    #{
+        #Find[K,entity]:setColor(vec(255,93,0))
+    #    Find[K,entity]:setAlpha(0)
+    #}  
+}
