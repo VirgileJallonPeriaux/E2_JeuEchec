@@ -31,3 +31,4 @@ for(K=1,5){
   }
 }
 ```
+![Image of Yaktocat]https://www.dropbox.com/home/E6?preview=gates.jpg)
