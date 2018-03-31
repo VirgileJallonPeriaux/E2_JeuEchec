@@ -23,9 +23,9 @@ Le langage propose toutefois, par défaut, tout un panel de méthodes dont la pl
 La syntaxe a été voulue plutôt simple, permettant ainsi à n'importe quel joueur ayant quelques notions de base en algorithmie, d'utiliser l'Expression 2.
 
 ```
+NombreUn = 7
+NombreDeux = 3
 for(K=1,5){
-  NombreUn = 7
-  NombreDeux = 3
   if(NombreUn + NombreDeux == 10){
     print("La condition est vraie et la variable K vaut"+K)
   }
