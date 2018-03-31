@@ -13,7 +13,7 @@ De loin l'extension la plus complète disponible sur Garry's Mod, elle propose n
 ### Les Gates (Portes logiques)
 - Elles permettent au joueur d'utiliser dans le jeu des portes logiques et de construire des algorithmes simples en reliant différentes "portes" entre elles. Simples d'utilisation, elles permettent notamment d'effectuer des opérations mathématiques sur des nombres.
 De manière un peu plus complexe, les gates permettent aussi de manipuler des vecteurs 3D (x,y,z), des chaînes de caractères, des array...
-![Apercu Gates](https://github.com/VirgileJallonPeriaux/E2_JeuEchec/blob/master/Images/gates.jpg)
+![Apercu Gates](https://github.com/VirgileJallonPeriaux/E2_JeuEchec/blob/master/Images/gates.jpg "Addition de deux entiers, conversion en string puis affichage sur un écran")
 
 ### L'Expression 2 (E2)
 - L'Expression 2 est un langage de programmation interprété disponible depuis le jeu.
