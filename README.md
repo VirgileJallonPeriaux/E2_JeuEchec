@@ -36,3 +36,4 @@ for(K=1,5){
 ```
 ## Rendu du jeu d'échec sur Garry's Mod
 ![Apercu de l'échiquier](https://github.com/VirgileJallonPeriaux/E2_JeuEchec/blob/master/Images/jeuEchec.jpg)
+*Dans cette situation de test, la case de la pièce sélectionnée est colorée en vert. Les cases oranges sont celles où la pièce a le droit de se déplacer*
