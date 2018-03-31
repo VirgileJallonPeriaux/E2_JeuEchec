@@ -22,3 +22,15 @@ Bien que très permissif, l'E2 reste limité en terme de POO : on ne peut pas cr
 Il est toutefois possible de créer ses propres méthodes en les programmant dans un script LUA.
 Le langage propose toutefois, par défaut, tout un panel de méthodes dont la plupart sont détaillées ici : [Garrys'Mod E2 Wiki](https://github.com/wiremod/wire/wiki/Expression-2)
 La syntaxe a été voulue plutôt simple, permettant ainsi à n'importe quel joueur ayant quelques notions de base en algorithmie, d'utiliser l'Expression 2.
+
+```
+for(K=1,5)
+{
+  NombreUn = 7
+  NombreDeux = 3
+  if(NombreUn + NombreDeux == 10)
+  {
+    print("La condition est vraie")
+  }
+}
+```
