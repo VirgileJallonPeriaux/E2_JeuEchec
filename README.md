@@ -31,4 +31,5 @@ for(K=1,5){
   }
 }
 ```
-![Image of Yaktocat]https://www.dropbox.com/home/E6?preview=gates.jpg)
+## Rendu, en jeu, du jeu d'échec
+![Apercu de l'échiquier](https://github.com/VirgileJallonPeriaux/E2_JeuEchec/blob/master/Images/jeuEchec.jpg)
